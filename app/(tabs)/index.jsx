@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { Stack } from 'expo-router'
+
 
 export default function HomeScreen() {
   return (
@@ -8,6 +10,7 @@ export default function HomeScreen() {
       <Text style={styles.subtitle}>Use the navigation tabs above to explore the app</Text>
     </View>
   )
+  
 }
 
 const styles = StyleSheet.create({

@@ -28,7 +28,7 @@ function TopNavigation() {
                         <Ionicons 
                             name={item.icon as any} 
                             size={20} 
-                            color={isActive ? '#fff' : '#ffccbc'} 
+                            color={isActive ? '#000000ff' : '#000000ff'} 
                         />
                         <Text style={[
                             styles.navText, 
@@ -65,9 +65,9 @@ export default function TabLayout() {
 const styles = StyleSheet.create({
     topNav: {
         flexDirection: 'row',
-        backgroundColor: '#f4511e',
-        paddingTop: 40,
-        paddingBottom: 10,
+        backgroundColor: '#ececf0',
+        paddingTop: 35,
+        paddingBottom: 5,
         paddingHorizontal: 5,
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -80,15 +80,15 @@ const styles = StyleSheet.create({
         minWidth: 60,
     },
     activeNavItem: {
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
     },
     navText: {
         fontSize: 11,
         fontWeight: 'bold',
-        color: '#ffccbc',
+        color: '#000000ff',
         marginTop: 2,
     },
     activeNavText: {
-        color: '#fff',
+        color: '#000000ff',
     },
 });
