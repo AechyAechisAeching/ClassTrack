@@ -1,13 +1,15 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { Ionicons } from '@expo/vector-icons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 export default function SettingsScreen() {
   
- 
+
 return (
   
   <ScrollView contentContainerStyle={styles.container}>
+    <MaterialCommunityIcons name="school-outline" size={54} color="black" />
     <View style={styles.theme} />
     <View style={styles.notifications} />
     <View style={styles.about} />
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffffff'
   },
+
 
   theme: {
       alignItems: 'center',
