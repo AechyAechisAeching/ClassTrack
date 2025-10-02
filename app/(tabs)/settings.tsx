@@ -2,68 +2,52 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-
 export default function SettingsScreen() {
   
 
 return (
-  
-  <ScrollView contentContainerStyle={styles.container}>
-    <MaterialCommunityIcons name="school-outline" size={54} color="black" />
-    <View style={styles.theme} />
-    <View style={styles.notifications} />
-    <View style={styles.about} />
-  </ScrollView>
-)
- }
-  
 
+  <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.header}>
+    <MaterialCommunityIcons name="school-outline" size={40} color="block" />
+    <Text style={styles.headerText}>SchoolTrack</Text>
+    </View>
+    <View style={styles.card}>
+      <Text style={styles.cardTitle}>Appearance</Text>
+      <Ionicons name="color-palette-outline" size={28} color="black" />
+    </View>
+
+    <View style={styles.card}>
+        <Text style={styles.cardTitle}>About</Text>
+        <Ionicons name="information-circle-outline" size={28} color="black" />
+      </View>
+    </ScrollView>
+)
+}
 
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 20,
-    flex: 1,
-    backgroundColor: '#ffffffff'
+    paddingHorizontal: 15,
+    backgroundColor: 'fff',
   },
 
+  header: {
+    flexDirection: 'row',
+  },
 
-  theme: {
-      alignItems: 'center',
-      marginLeft: 15,
-      marginTop: 120,
-      marginBottom: 30,
-      width: 380,
-      borderRadius: 10,
-      height: 230,
-      backgroundColor: 'rgba(245, 245, 245, 1)',
-      borderWidth: 1.6,
-      borderColor: 'rgba(0, 0, 0, 0.15)'
-      
+  headerText: {
+    fontSize: 20,
+  },
   
+  card: {
+    flexDirection: 'row',
   },
-  notifications: {
-      alignItems: 'center',
-      marginLeft: 15,
-      marginBottom: 30,
-      width: 380,
-      borderRadius: 10,
-      height: 220,
-      backgroundColor: 'rgba(245, 245, 245, 1)',
-      borderWidth: 1.6,
-      borderColor: 'rgba(0, 0, 0, 0.15)'
-  },
-  about: {
-      alignItems: 'center',
-      marginLeft: 15,
-      marginBottom: 30,
-      width: 380,
-      borderRadius: 10,
-      height: 200,
-      backgroundColor: 'rgba(245, 245, 245, 1)',
-      borderWidth: 1.6,
-      borderColor: 'rgba(0, 0, 0, 0.15)'
+
+  cardTitle: {
+    fontSize: 18,
   },
 
 });
 
-      
+
