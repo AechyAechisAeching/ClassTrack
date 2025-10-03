@@ -8,9 +8,9 @@ export default function SettingsScreen() {
 
 return (
 
-  <ScrollView contentContainerStyle={styles.container}>
+  <View style={styles.container}>
     <View style={styles.header}>
-    <MaterialCommunityIcons name="school-outline" size={40} marginBottom="20" marginRight="10" color="block"/>
+    <MaterialCommunityIcons name="school-outline" size={40} marginBottom="20" marginRight="10" color="black"/>
     <Text style={styles.headerText}>ClassTrack</Text>
     </View>
     
@@ -41,6 +41,9 @@ return (
       <View style={styles.cardHeader}>
         <Ionicons name="notifications-outline" size={28} color="black" style={styles.icon} />
         <Text style={styles.cardTitle}>Notifications</Text>
+        <Text style={styles.progressTitle}>
+          Coming Soon 
+        </Text>
       </View>
       
       <View style={styles.cardContent}>
@@ -77,7 +80,7 @@ return (
       </View>
     </View>
       
-    </ScrollView>
+    </View>
 )
 }
 
@@ -125,7 +128,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   icon: {
-    marginRight: 10,
+    marginRight: 5,
   },
 
   cardTitle: {
@@ -160,6 +163,18 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
 
+  progressTitle: {
+    fontSize: 12,
+    marginLeft: 10,
+    color: 'black',
+    fontWeight: 500,
+    backgroundColor: '#7e7e7e27',
+    borderRadius: 5.5,
+    paddingLeft: 5.2,
+    paddingRight: 5,
+    paddingTop: 2,
+    paddingBottom: 2,
+  }
 });
 
 
