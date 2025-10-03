@@ -12,24 +12,48 @@ return (
     <View style={styles.header}>
     <MaterialCommunityIcons name="school-outline" size={40} marginBottom="20" marginRight="10" color="block"/>
     <Text style={styles.headerText}>ClassTrack</Text>
+    </View>
     
     <View style={styles.secondHeader}>
-      <Text style={styles.secondHeaderText}>Lorem Ipsum</Text>
-    </View>
+      <Text style={styles.secondHeaderText}>Customize your ClassTrack experience</Text>
     </View>
     
     
-    <View style={styles.card}>
-      <Ionicons name="color-palette-outline" size={28} marginRight="10" color="black" />
-      <Text style={styles.cardTitle}>Appearance</Text>
+     <View style={styles.card}>
+      <View style={styles.cardHeader}>
+        <Ionicons name="color-palette-outline" size={28} color="black" style={styles.icon} />
+        <Text style={styles.cardTitle}>Appearance</Text>
+      </View>
       
+      <View style={styles.cardContent}>
+        <Text style={styles.contentText}>
+          Theme
+        </Text>
+        <View style={styles.themeswitch}>
+          <Text style={styles.themeText}>
+            Choose your preferred theme
+          </Text>
+        </View>
+      </View>
     </View>
 
     <View style={styles.card}>
-      <Ionicons name="information-circle-outline" size={28} color="black" />
-        <Text style={styles.cardTitle}>About</Text>
-        
+      <View style={styles.cardHeader}>
+        <Ionicons name="information-circle-outline" size={28} color="black" style={styles.icon} />
+        <Text style={styles.cardTitle}>About ClassTrack</Text>
       </View>
+      
+      <View style={styles.cardContent}>
+        <Text style={styles.contentText}>
+          Version
+        </Text>
+        <Text style={styles.contentText}>
+          Build
+        </Text>
+        {/* Card content goes here */}
+      </View>
+    </View>
+      
     </ScrollView>
 )
 }
@@ -43,9 +67,8 @@ const styles = StyleSheet.create({
 
   header: {
     flexDirection: 'row',
-    marginBottom: 25,
     marginTop: 25,
-    marginLeft: 90,
+    alignSelf: 'center',
   },
 
   headerText: {
@@ -53,22 +76,60 @@ const styles = StyleSheet.create({
   },
 
   secondHeader: {
-    flexDirection: 'column',
-    marginTop: 40,
-    marginRight: 150,
+    alignItems: 'center',
+    marginBottom: 30,
   },
 
   secondHeaderText: {
-    fontSize: 18,
+    fontSize: 15,
+    color: 'grey',
   },
   
   card: {
+    backgroundColor: '#ffffff76',
+    borderRadius: 12,
+    borderStyle: 'solid',
+    borderColor: '#dbdbdbff',
+    borderWidth: 1.5,
+    padding: 16,
+    marginVertical: 10,
+    marginHorizontal: 10,
+  },
+  
+  cardHeader: {
     flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  icon: {
+    marginRight: 10,
   },
 
   cardTitle: {
     fontSize: 18,
+    color: '#000',
   },
+
+  cardContent: {
+    paddingTop: 8,
+  },
+
+  contentText: {
+    fontSize: 14,
+    color: '#000000ff',
+    fontWeight: '500',
+    lineHeight: 30,
+  },
+
+  themeswitch: {
+    lineHeight: 10,
+    margin: 0,  
+  },
+
+  themeText: {
+    fontSize: 13,
+    color: 'grey',
+  }
 
 });
 
