@@ -1,14 +1,31 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { Button } from 'react-native-paper';
 
 export default function ScheduleScreen() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
+                        <Ionicons name="calendar-outline" size={30} color="black" style={styles.icon} />
                 <Text style={styles.headerText}>
                     Schedule
                 </Text>
+                 
+                <Button
+                    icon="plus"
+                    mode="contained"
+                    onPress={() => console.log('Pressed')}
+                    style={styles.Button}
+                    labelStyle={styles.Label}>
+                    Add Lesson
+                </Button>
             </View>
-
+            <View style={styles.scheduledLessons}>
+                
+                    <Text style={styles.ScheduleInfo}>
+                        No Lessons scheduled yet. Add your first lesson to get started!
+                    </Text>
+            </View>
         </View>
     );
 }
@@ -20,10 +37,54 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         backgroundColor: '#fff',
     },
+
+    icon: {
+        marginTop: 10,
+    },
+
     header: {
         padding: 10,
+        marginTop: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
+
     headerText: {
-        fontSize: 18,
+        fontSize: 20,
+        marginTop: 10,
+        marginLeft: 10,
+        fontWeight: '700',
+
     },
+     Button: {
+        marginLeft: 100,
+        alignItems: 'center',
+        borderRadius: 12,
+        backgroundColor: "#040009ff",
+        paddingHorizontal: 5,
+        paddingVertical: 2,
+    },
+
+    Label: {
+        fontSize: 14,
+        fontWeight: "600",
+        color: "white",
+    },
+    
+    scheduledLessons: {
+        marginTop: 40,
+      backgroundColor: '#ffffff1b',
+      borderRadius: 12,
+      borderColor: '#6e6e6e32',
+      borderWidth: 1,
+      padding: 16,
+      marginVertical: 10,
+      marginHorizontal: 10,
+    },
+    
+    ScheduleInfo: {
+        padding: 30,
+        color: 'grey',
+    },
+
 });
