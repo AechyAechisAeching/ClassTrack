@@ -3,7 +3,12 @@ import {View, Text, StyleSheet} from 'react-native';
 export default function ScheduleScreen() {
     return (
         <View style={styles.container}>
-            <Text>Schedule</Text>
+            <View style={styles.header}>
+                <Text style={styles.headerText}>
+                    Schedule
+                </Text>
+            </View>
+
         </View>
     );
 }
@@ -11,7 +16,14 @@ export default function ScheduleScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        paddingVertical: 20,
+        paddingHorizontal: 15,
+        backgroundColor: '#fff',
+    },
+    header: {
+        padding: 10,
+    },
+    headerText: {
+        fontSize: 18,
     },
 });

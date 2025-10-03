@@ -79,16 +79,16 @@ return (
         {/* Card content goes here */}
       </View>
     </View>
-      
     </View>
 )
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingVertical: 20,
     paddingHorizontal: 15,
-    backgroundColor: 'fff',
+    backgroundColor: '#fff',
   },
 
   header: {
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
 
   headerText: {
     fontSize: 28,
+    fontWeight: '600',
   },
 
   secondHeader: {
