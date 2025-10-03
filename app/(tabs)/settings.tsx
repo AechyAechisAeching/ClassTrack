@@ -39,6 +39,29 @@ return (
 
     <View style={styles.card}>
       <View style={styles.cardHeader}>
+        <Ionicons name="notifications-outline" size={28} color="black" style={styles.icon} />
+        <Text style={styles.cardTitle}>Notifications</Text>
+      </View>
+      
+      <View style={styles.cardContent}>
+        <Text style={styles.contentText}>
+          Task Reminders
+        </Text>
+        <Text style={styles.notifText}>
+          Get notified about upcoming task deadlines
+        </Text>
+        <Text style={styles.contentText}>
+          Class Reminders
+        </Text>
+        <Text style={styles.notifText}>
+          Get notified before classes start
+        </Text>
+        {/* Card content goes here */}
+      </View>
+    </View>
+
+     <View style={styles.card}>
+      <View style={styles.cardHeader}>
         <Ionicons name="information-circle-outline" size={28} color="black" style={styles.icon} />
         <Text style={styles.cardTitle}>About ClassTrack</Text>
       </View>
@@ -95,7 +118,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 10,
   },
-  
+
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -129,7 +152,13 @@ const styles = StyleSheet.create({
   themeText: {
     fontSize: 13,
     color: 'grey',
-  }
+  },
+
+  notifText: {
+    fontSize: 12,
+    color: 'grey',
+    lineHeight: 20,
+  },
 
 });
 
