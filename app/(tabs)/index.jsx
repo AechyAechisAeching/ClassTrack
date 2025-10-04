@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   return (
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.safeArea}>
     <View style={styles.container}>
       
       <View style={styles.header}>
@@ -48,10 +51,18 @@ export default function HomeScreen() {
         </View>
       </View>
     </View>
+    </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
 
 const styles = StyleSheet.create({
+  
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+
   container: {
     flex: 1,
     paddingVertical: 20,
