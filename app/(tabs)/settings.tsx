@@ -1,13 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Switch } from 'react-native'
 import React from 'react'
+import { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 export default function SettingsScreen() {  
-
 return (
-
+  <SafeAreaProvider>
+    <SafeAreaView style={styles.safeArea}>
   <View style={styles.container}>
     <View style={styles.header}>
     <MaterialCommunityIcons name="school-outline" size={40} marginBottom="20" marginRight="10" color="black"/>
@@ -80,10 +82,19 @@ return (
       </View>
     </View>
     </View>
+    </SafeAreaView>
+  </SafeAreaProvider>
 )
 }
 
+
 const styles = StyleSheet.create({
+
+    safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+
   container: {
     flex: 1,
     paddingVertical: 20,

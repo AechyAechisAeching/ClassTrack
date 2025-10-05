@@ -1,9 +1,13 @@
 import {View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function ScheduleScreen() {
     return (
+        <SafeAreaProvider>
+            <SafeAreaView style={styles.SafeArea}>
+
         <View style={styles.container}>
             <View style={styles.header}>
                         <Ionicons name="calendar-outline" size={30} color="black" style={styles.icon} />
@@ -27,10 +31,16 @@ export default function ScheduleScreen() {
                     </Text>
             </View>
         </View>
-    );
-}
+        </SafeAreaView>
+        </SafeAreaProvider>
+    )};
 
 const styles = StyleSheet.create({
+    SafeArea: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+    
     container: {
         flex: 1,
         paddingVertical: 20,
