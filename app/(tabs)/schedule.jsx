@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     },
     
     scheduledLessons: {
-        marginTop: 40,
+      marginTop: 40,
       backgroundColor: '#ffffff1b',
       borderRadius: 12,
       borderColor: '#6e6e6e32',

@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import PagerView from 'react-native-pager-view';
 import { useRef, useState } from 'react';
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+
 
 import HomeScreen from './index';
 import ScheduleScreen from './schedule';
@@ -52,6 +54,7 @@ export default function TabLayout() {
   };
 
   return (
+    <SafeAreaView style={styles.safeArea}>
     <View style={{ flex: 1 }}>
       <TopNavigation onTabPress={handleTabPress} currentPage={currentPage} />
       <PagerView
@@ -77,14 +80,20 @@ export default function TabLayout() {
         </View>
       </PagerView>
     </View>
+     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+
   topNav: {
     flexDirection: 'row',
     backgroundColor: '#ececf0',
-    paddingTop: 35,
+    paddingTop: 10,
     paddingBottom: 5,
     paddingHorizontal: 5,
     justifyContent: 'space-around',
