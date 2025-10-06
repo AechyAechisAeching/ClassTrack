@@ -256,7 +256,7 @@ divider: {
   smallText: {
     marginTop: 5,
     fontSize: 14,
-    color: '#777',
+    color: '#777777b0',
   },
 
 });

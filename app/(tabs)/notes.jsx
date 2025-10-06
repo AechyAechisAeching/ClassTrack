@@ -1,12 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from 'react-native-paper';
 
 
 export default function NotesScreen() {
   return (
-    <SafeAreaProvider>
       <SafeAreaView style={styles.SafeArea}>
         <View style={styles.container}>
           <View style={styles.header}>
@@ -36,7 +35,6 @@ export default function NotesScreen() {
         </View>
         </View>
       </SafeAreaView>
-    </SafeAreaProvider>
   );
 }
 

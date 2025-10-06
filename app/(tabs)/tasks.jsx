@@ -1,18 +1,28 @@
 import {View, Text, StyleSheet} from 'react-native';
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from "@expo/vector-icons";
 
 
 export default function TasksScreen() {
     return (
-        <SafeAreaProvider>
+        
             <SafeAreaView style={styles.SafeArea}>
-
-            
         <View style={styles.container}>
-            <Text>Tasks</Text>
+            <Text style={styles.header}>
+                <View style={styles.headerLeft}>
+                <Ionicons
+                 name="document-text"
+                 size={30}
+                 color="black"
+                 style={styles.icon}
+                    />
+                    <Text style={styles.headerText}>
+                        Tasks
+                    </Text>
+                </View>
+            </Text>
         </View>
         </SafeAreaView>
-        </SafeAreaProvider>
     );
 }
 
@@ -24,7 +34,5 @@ const styles = StyleSheet.create({
     
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+        },
 });
