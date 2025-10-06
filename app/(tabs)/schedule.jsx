@@ -10,11 +10,12 @@ export default function ScheduleScreen() {
 
         <View style={styles.container}>
             <View style={styles.header}>
-                        <Ionicons name="calendar-outline" size={30} color="black" style={styles.icon} />
+                <View style={styles.headerLeft}>
+                  <Ionicons name="calendar-outline" size={30} color="black" style={styles.icon} />
                 <Text style={styles.headerText}>
                     Schedule
                 </Text>
-                 
+                </View>
                 <Button
                     icon="plus"
                     mode="contained"
@@ -53,11 +54,15 @@ const styles = StyleSheet.create({
     },
 
     header: {
-        padding: 10,
-        marginTop: 10,
         flexDirection: 'row',
         alignItems: 'center',
     },
+
+    headerLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+
 
     headerText: {
         fontSize: 20,
@@ -68,11 +73,12 @@ const styles = StyleSheet.create({
     },
      Button: {
         marginLeft: 100,
+        marginTop: 13,
         alignItems: 'center',
         borderRadius: 12,
         backgroundColor: "#040009ff",
         paddingHorizontal: 5,
-        paddingVertical: 2,
+        paddingVertical: 3,
     },
 
     Label: {

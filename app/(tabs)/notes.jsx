@@ -10,6 +10,7 @@ export default function NotesScreen() {
       <SafeAreaView style={styles.SafeArea}>
         <View style={styles.container}>
           <View style={styles.header}>
+            <View style={styles.headerLeft}>
             <Ionicons
               name="document-text"
               size={30}
@@ -17,6 +18,7 @@ export default function NotesScreen() {
               style={styles.icon}
             />
             <Text style={styles.headerText}>Tasks</Text>
+            </View>
             <Button
               icon="plus"
               mode="contained"
@@ -40,46 +42,52 @@ export default function NotesScreen() {
 
 const styles = StyleSheet.create({
   SafeArea: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+    
+    container: {
+        flex: 1,
+        paddingVertical: 20,
+        paddingHorizontal: 15,
+        backgroundColor: '#fff',
+    },
 
-  container: {
-    flex: 1,
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-  },
+    icon: {
+        marginTop: 10,
+    },
 
-  icon: {
-    padding: 20,
-    marginBottom: 15,
-  },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
 
-  header: {
-    padding: 10,
-    marginTop: 0,
-    flexDirection: "row",
-    alignItems: "center",
-  },
+    headerLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
 
-  headerText: {
-    fontSize: 20,
-    marginTop: -20,
-    marginLeft: 10,
-    fontWeight: '700',
-  },
-  Button: {
-    marginLeft: 100,
-    alignItems: 'center',
-    borderRadius: 12,
-    backgroundColor: "#040009ff",
-    paddingHorizontal: 5,
-    paddingVertical: 2,
-  },
-   Label: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "white",
+    headerText: {
+        fontSize: 20,
+        marginTop: 10,
+        marginLeft: 10,
+        fontWeight: '700',
+
+    },
+     Button: {
+        marginTop: 15,
+        marginLeft: 130,
+        alignItems: 'center',
+        borderRadius: 12,
+        backgroundColor: '#040009ff',
+        paddingHorizontal: 5,
+        paddingVertical: 3,
+    },
+
+    Label: {
+        fontSize: 14,
+        fontWeight: "600",
+        color: "white",
     },
 
     addedNotes: {
