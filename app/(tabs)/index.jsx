@@ -14,7 +14,7 @@ export default function HomeScreen() {
         />
         <Text style={styles.headerText}>ClassTrack</Text>
       </View>
-        
+
       <View style={styles.secondHeader}>
         <Text style={styles.secondHeaderText}>Your personal student companion</Text>
       </View>
