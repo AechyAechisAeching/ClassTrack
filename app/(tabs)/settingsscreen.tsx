@@ -2,12 +2,12 @@ import { Platform, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Divider } from 'react-native-paper';
 
 export default function SettingsScreen() {  
 return (
-  <SafeAreaProvider>
+
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.header}>
@@ -102,7 +102,6 @@ return (
       </View>
       </View>
     </SafeAreaView>
-  </SafeAreaProvider>
 );
 }
 
@@ -116,14 +115,14 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    paddingVertical: 20,
+    paddingVertical: 0,
     paddingHorizontal: 15,
     backgroundColor: '#fff',
   },
 
   header: {
     flexDirection: 'row',
-    marginTop: 25,
+    marginTop: 5,
     alignSelf: 'center',
   },
 

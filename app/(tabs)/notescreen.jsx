@@ -16,7 +16,7 @@ export default function NotesScreen() {
               color="black"
               style={styles.icon}
             />
-            <Text style={styles.headerText}>Tasks</Text>
+            <Text style={styles.headerText}>Notes</Text>
             </View>
             <Button
               icon="plus"
@@ -25,7 +25,7 @@ export default function NotesScreen() {
               style={styles.Button}
               labelStyle={styles.Label}
             >
-              Add Lesson
+              Add Note
             </Button>
           </View>
         <View style={styles.addedNotes}>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     
     container: {
         flex: 1,
-        paddingVertical: 20,
+        paddingVertical: 0,
         paddingHorizontal: 15,
         backgroundColor: '#fff',
     },
@@ -73,12 +73,12 @@ const styles = StyleSheet.create({
 
     },
      Button: {
-        marginTop: 15,
+        marginTop: 10,
         marginLeft: 130,
         alignItems: 'center',
         borderRadius: 12,
         backgroundColor: '#040009ff',
-        paddingHorizontal: 5,
+        paddingHorizontal: 14,
         paddingVertical: 3,
     },
 

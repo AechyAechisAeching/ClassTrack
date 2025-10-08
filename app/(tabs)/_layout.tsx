@@ -6,10 +6,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 
 import HomeScreen from './index';
-import ScheduleScreen from './schedule';
-import TasksScreen from './tasks';
-import NotesScreen from './notes';
-import SettingsScreen from './settings';
+import ScheduleScreen from './schedulescreen';
+import TasksScreen from './taskscreen';
+import NotesScreen from './notescreen';
+import SettingsScreen from './settingsscreen';
 
 function TopNavigation({ onTabPress, currentPage }) {
   const navItems = [

@@ -5,7 +5,7 @@ import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   return (
-    <SafeAreaProvider>
+    
       <SafeAreaView style={styles.safeArea}>
     <View style={styles.container}>
       
@@ -52,7 +52,6 @@ export default function HomeScreen() {
       </View>
     </View>
     </SafeAreaView>
-    </SafeAreaProvider>
   )
 }
 
@@ -72,7 +71,6 @@ const styles = StyleSheet.create({
 
   header: {
     flexDirection: 'row',
-    marginTop: 25,
     alignSelf: 'center',
     alignItems: 'center',
   },

@@ -1,11 +1,10 @@
 import {View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ScheduleScreen() {
     return (
-        <SafeAreaProvider>
             <SafeAreaView style={styles.SafeArea}>
 
         <View style={styles.container}>
@@ -33,7 +32,6 @@ export default function ScheduleScreen() {
             </View>
         </View>
         </SafeAreaView>
-        </SafeAreaProvider>
     )};
 
 const styles = StyleSheet.create({
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
     
     container: {
         flex: 1,
-        paddingVertical: 20,
+        paddingVertical: 0,
         paddingHorizontal: 15,
         backgroundColor: '#fff',
     },
@@ -54,6 +52,7 @@ const styles = StyleSheet.create({
     },
 
     header: {
+        marginBottom: 20,
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
     },
     
     ScheduleInfo: {
-        padding: 30,
+        padding: 10,
         color: 'grey',
     },
 
