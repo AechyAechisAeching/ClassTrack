@@ -1,10 +1,14 @@
 import {View, Text, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from 'react-native-paper';
-import Task from '../components/Task';
+import Modal from '../components/Modal';
 
 export default function TasksScreen() {
+    const [modalVisible, setModalVisible] = useState(false);
+    
+
     return (
         
       <SafeAreaView style={styles.SafeArea}>
@@ -19,21 +23,24 @@ export default function TasksScreen() {
             />
             <Text style={styles.headerText}>Tasks</Text>
             </View>
+
             <Button
               icon="plus"
               mode="contained"
-              onPress={() => console.log("Pressed")}
+              onPress={() => setModalVisible(true)}
               style={styles.Button}
-              labelStyle={styles.Label}
-            >
+              labelStyle={styles.Label} >
               Add Task
             </Button>
           </View>
+
         <View style={styles.addedtasks}>
             <Text style={styles.tasksContent}>
             No tasks yet. Add your first task to get started!
             </Text>
         </View>
+
+        <Modal visible={modalVisible} onClose={() => setModalVisible(false)} />
         </View>
       </SafeAreaView>
     );
