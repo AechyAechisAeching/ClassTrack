@@ -1,114 +1,108 @@
-import {View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from 'react-native-paper';
 import Modal from '../components/Modal';
+import Task from '../components/Task';
 
 export default function TasksScreen() {
-    const [modalVisible, setModalVisible] = useState(false);
-    
+  const [modalVisible, setModalVisible] = useState(false);
+  const [tasks, setTasks] = useState([]);
 
-    return (
-        
-      <SafeAreaView style={styles.SafeArea}>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <View style={styles.headerLeft}>
-            <Ionicons
-              name="checkbox"
-              size={30}
-              color="black"
-              style={styles.icon}
+  const handleAddTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+    setModalVisible(false);
+  };
+
+  return (
+    <SafeAreaView style={styles.SafeArea}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <View style={styles.headerLeft}>
+            <Ionicons name="checkbox" size={30} color="black" style={styles.icon}
             />
             <Text style={styles.headerText}>Tasks</Text>
-            </View>
-
-            <Button
-              icon="plus"
-              mode="contained"
-              onPress={() => setModalVisible(true)}
-              style={styles.Button}
-              labelStyle={styles.Label} >
-              Add Task
-            </Button>
           </View>
 
-        <View style={styles.addedtasks}>
-            <Text style={styles.tasksContent}>
-            No tasks yet. Add your first task to get started!
-            </Text>
+          <Button
+            icon="plus"
+            mode="contained"
+            onPress={() => setModalVisible(true)}
+            style={styles.Button}
+            labelStyle={styles.Label}>
+            Add Task
+          </Button>
         </View>
 
-        <Modal visible={modalVisible} onClose={() => setModalVisible(false)} />
+        <View style={styles.items}>
+          {tasks.map((item, index) => (
+            <Task key={index} text={item.task} description={item.description} />
+          ))}
         </View>
-      </SafeAreaView>
-    );
+
+        <Modal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          onAddTask={handleAddTask} />
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-    SafeArea: {
-        flex: 1,
-        backgroundColor: '#fff',
-    },
-    
-    container: {
-        flex: 1,
-        paddingVertical: 0,
-        paddingHorizontal: 15,
-        backgroundColor: '#fff',
-    },
 
-    icon: {
-        marginTop: 10,
-    },
+  SafeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
 
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
+  container: {
+    flex: 1,
+    paddingVertical: 0,
+    paddingHorizontal: 15,
+    backgroundColor: '#fff',
+  },
 
-    headerLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
+  icon: {
+    marginTop: 10,
+  },
 
-    headerText: {
-        fontSize: 20,
-        marginTop: 10,
-        marginLeft: 10,
-        fontWeight: '700',
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 
-    },
-     Button: {
-        marginTop: 10,
-        marginLeft: 130,
-        alignItems: 'center',
-        borderRadius: 12,
-        backgroundColor: '#040009ff',
-        paddingHorizontal: 13,
-        paddingVertical: 3,
-    },
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 
-    Label: {
-        fontSize: 14,
-        fontWeight: "600",
-        color: "white",
-    },
+  headerText: {
+    fontSize: 20,
+    marginTop: 10,
+    marginLeft: 10,
+    fontWeight: '700',
+  },
 
-    addedtasks: {
-     marginTop: 40,
-     backgroundColor: '#ffffff1b',
-     borderRadius: 12,
-     borderColor: '#6e6e6e32',
-     borderWidth: 1,
-     padding: 16,
-     marginVertical: 10,
-     marginHorizontal: 10,
-    },
-    
-    tasksContent: {        
-        padding: 10,
-        color: 'grey',
-    },
+  Button: {
+    marginTop: 10,
+    marginLeft: 130,
+    alignItems: 'center',
+    borderRadius: 12,
+    backgroundColor: '#040009ff',
+    paddingHorizontal: 13,
+    paddingVertical: 3,
+  },
+
+  Label: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "white",
+  },
+
+  items: {
+    marginTop: 20,
+  },
+  
 });

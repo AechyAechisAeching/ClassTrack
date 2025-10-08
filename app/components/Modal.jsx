@@ -2,15 +2,22 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Modal as RNModal } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 
-export default function Modal({ visible, onClose }) {
+export default function Modal({ visible, onClose, onAddTask }) {
   const [task, setTask] = useState('');
   const [description, setDescription] = useState('');
+
+  const handleAdd = () => {
+    if (task.trim() === '') return;
+    onAddTask({ task, description });
+    setTask('');
+    setDescription('');
+  };
 
   return (
     <RNModal
       visible={visible}
       transparent={true}
-      animationType={'slide'}
+      animationType="slide"
       onRequestClose={onClose}
     >
       <View style={styles.modalOverlay}>
@@ -18,7 +25,7 @@ export default function Modal({ visible, onClose }) {
           <Text style={styles.modalTitle}>Add a New Task</Text>
 
           <TextInput
-            placeholder='Task Name'
+            placeholder="Task Name"
             value={task}
             onChangeText={setTask}
             mode="outlined"
@@ -26,7 +33,7 @@ export default function Modal({ visible, onClose }) {
           />
 
           <TextInput
-            placeholder='Task Description'
+            placeholder="Task Description"
             value={description}
             onChangeText={setDescription}
             mode="outlined"
@@ -36,23 +43,15 @@ export default function Modal({ visible, onClose }) {
           <View style={styles.modalButtons}>
             <Button
               mode="contained"
-              onPress={() => {
-                console.log('Task added:', task);
-                setTask('');
-                console.log('Description added:', description);
-                setDescription('');
-                onClose();
-              }}
-              style={styles.confirmButton}
-            >
+              onPress={handleAdd}
+              style={styles.confirmButton} >
               Add
             </Button>
 
             <Button
               mode="outlined"
               onPress={onClose}
-              style={styles.cancelButton}
-            >
+              style={styles.cancelButton} >
               Cancel
             </Button>
           </View>
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
   },
 
   modalTitle: {
-    marginLeft: 75,
+    textAlign: 'center',
     fontSize: 22,
     fontWeight: '700',
     marginBottom: 15,
@@ -104,5 +103,5 @@ const styles = StyleSheet.create({
   cancelButton: {
     borderColor: '#040009ff',
   },
-
+  
 });
