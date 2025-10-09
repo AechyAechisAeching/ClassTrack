@@ -34,13 +34,21 @@ export default function TasksScreen() {
             Add Task
           </Button>
         </View>
-
+        {tasks.length === 0 ? (
+        <View style={styles.noTasks}>
+          <Text style={styles.noTasksText}>
+            
+             No tasks yet. Add your first task to get started!
+             
+          </Text>
+        </View>
+        ) : (
         <View style={styles.items}>
           {tasks.map((item, index) => (
             <Task key={index} text={item.task} description={item.description} />
           ))}
         </View>
-
+        )}
         <Modal
           visible={modalVisible}
           onClose={() => setModalVisible(false)}
@@ -99,6 +107,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     color: "white",
+  },
+  noTasks: {
+     marginTop: 40,
+     backgroundColor: '#ffffff1b',
+     borderRadius: 12,
+     borderColor: '#6e6e6e32',
+     borderWidth: 1,
+     padding: 16,
+     marginVertical: 10,
+     marginHorizontal: 10,
+  },
+
+  noTasksText: {
+    padding: 10,
+    color: 'grey',
   },
 
   items: {
