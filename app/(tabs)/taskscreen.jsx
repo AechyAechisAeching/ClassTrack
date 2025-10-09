@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from 'react-native-paper';
-import Modal from '../components/Modal';
+import Modal from '../components/TaskModal';
 import Task from '../components/Task';
 
 export default function TasksScreen() {

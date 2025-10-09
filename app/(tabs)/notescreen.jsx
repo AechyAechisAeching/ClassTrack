@@ -2,12 +2,23 @@ import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from 'react-native-paper';
-
+import Modal from "../components/NoteModal";
+import { useState } from "react";
+import Note from "../components/Note";
 
 export default function NotesScreen() {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [notes, setNotes] = useState([]);
+
+  const handleAddNote = (newNote) => {
+    setNotes([...notes, newNote]);
+    setModalVisible(false);
+  };
   return (
       <SafeAreaView style={styles.SafeArea}>
         <View style={styles.container}>
+
+        
           <View style={styles.header}>
             <View style={styles.headerLeft}>
             <Ionicons
@@ -21,18 +32,29 @@ export default function NotesScreen() {
             <Button
               icon="plus"
               mode="contained"
-              onPress={() => console.log("Pressed")}
+              onPress={() => setModalVisible(true)}
               style={styles.Button}
-              labelStyle={styles.Label}
-            >
+              labelStyle={styles.Label}>
               Add Note
             </Button>
           </View>
+          {notes.length === 0 ? (
         <View style={styles.addedNotes}>
             <Text style={styles.notesContent}>
             No notes yet. Add your first note to get started!
             </Text>
         </View>
+          ) : (
+        <View style={styles.items}>
+          {notes.map((item, index) => (
+            <Note key={index} text={item.note} description={item.description} />
+          ))}
+        </View>
+          )}
+          <Modal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          onAddNote={handleAddNote} />
         </View>
       </SafeAreaView>
   );
@@ -102,6 +124,10 @@ const styles = StyleSheet.create({
     notesContent: {        
         padding: 10,
         color: 'grey',
+    },
+
+    items: {
+      marginTop: 20,
     },
 
 });
