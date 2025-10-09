@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Modal as RNModal } from 'react-native';
+import { View, Text, StyleSheet, multiline, Modal as RNModal } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 
 export default function Modal({ visible, onClose, onAddNote }) {
@@ -22,22 +22,25 @@ export default function Modal({ visible, onClose, onAddNote }) {
     >
       <View style={styles.modalOverlay}>
         <View style={styles.modalCard}>
-          <Text style={styles.modalTitle}>Add a New Note</Text>
-
+          <Text style={styles.modalTitle}>Add New Note</Text>
+            <Text style={styles.content}>Title</Text>
           <TextInput
-            placeholder="Note Name"
+            placeholder="Write your title..."
             value={note}
             onChangeText={setNotes}
             mode="outlined"
-            style={styles.input}
+            style={styles.inputTitle}
           />
-
+            <Text style={styles.content}>Content</Text>
+            
           <TextInput
-            placeholder="Note Description"
+            placeholder="Write your note here..."
+            multiline={true}
             value={description}
             onChangeText={setDescription}
             mode="outlined"
-            style={styles.input}
+            textAlignVertical= "top"
+            style={styles.inputContent}
           />
 
           <View style={styles.modalButtons}>
@@ -82,12 +85,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 22,
     fontWeight: '700',
-    marginBottom: 15,
+    marginBottom: 6,
   },
 
-  input: {
-    marginBottom: 20,
+  inputTitle: {
+    marginBottom: 10,
     height: 50,
+  },
+
+  inputContent: {
+    marginBottom: 20,
+    height: 100,
+    fontSize: 15,
   },
 
   modalButtons: {
@@ -102,6 +111,12 @@ const styles = StyleSheet.create({
 
   cancelButton: {
     borderColor: '#040009ff',
+  },
+
+  content: {
+    marginBottom: 5,
+    fontSize: 16,
+    fontWeight: '500',
   },
   
 });
