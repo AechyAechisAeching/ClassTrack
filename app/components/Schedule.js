@@ -1,11 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function Schedule({ text, description }) {
+export default function Schedule({ text, description, location }) {
     return (
         <View style={styles.ScheduleContainer}>
             <Text style={styles.ScheduleTitle}>{text}</Text>
                 {description ? <Text style={styles.Scheduledescription}>{description}
+                </Text> : null}
+                {location ? <Text style={styles.classroom}>{location}
                 </Text> : null}
         </View>
     )
@@ -35,4 +37,10 @@ const styles = StyleSheet.create({
         marginTop: 15,
 
     },
+    classroom: {
+        fontSize: 14,
+        color: 'grey',
+        marginTop: 15,
+    },
+    
 });
