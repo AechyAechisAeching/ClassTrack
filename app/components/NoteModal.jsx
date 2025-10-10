@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, multiline, Modal as RNModal } from 'react-native';
+import { View, Text, StyleSheet, Modal as RNModal } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 
 export default function Modal({ visible, onClose, onAddNote }) {

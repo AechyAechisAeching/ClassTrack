@@ -2,8 +2,19 @@ import {View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Modal from '../components/ScheduleModal';
+import { useState } from 'react';
+import Schedule from '../components/Schedule';
 
 export default function ScheduleScreen() {
+    const [modalVisible, setModalVisible] = useState(false);
+    const [ lessons, setLessons] = useState([]);
+
+    const handleAddLesson = (newLesson) => {
+        setLessons([...lessons, newLesson]);
+        setModalVisible(false);
+    };
+
     return (
             <SafeAreaView style={styles.SafeArea}>
 
@@ -18,18 +29,29 @@ export default function ScheduleScreen() {
                 <Button
                     icon="plus"
                     mode="contained"
-                    onPress={() => console.log('Pressed')}
+                    onPress={() => setModalVisible(true)}
                     style={styles.Button}
                     labelStyle={styles.Label}>
                     Add Lesson
                 </Button>
             </View>
+            {lessons.length === 0 ? (
             <View style={styles.scheduledLessons}>
-                
                     <Text style={styles.ScheduleInfo}>
                         No Lessons scheduled yet. Add your first lesson to get started!
                     </Text>
             </View>
+            ) : (
+                <View style={styles.items}>
+                          {lessons.map((item, index) => (
+                            <Schedule key={index} text={item.lessons} description={item.description} />
+                          ))}
+                        </View>
+                          )}
+                          <Modal
+                          visible={modalVisible}
+                          onClose={() => setModalVisible(false)}
+                          onAddLesson={handleAddLesson} />
         </View>
         </SafeAreaView>
     )};
