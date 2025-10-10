@@ -44,7 +44,7 @@ export default function ScheduleScreen() {
             ) : (
                 <View style={styles.items}>
                           {lessons.map((item, index) => (
-                            <Schedule key={index} text={item.lessons} description={item.description} />
+                            <Schedule key={index} text={item.lessons} description={item.teacher} />
                           ))}
                         </View>
                           )}

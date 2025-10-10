@@ -34,7 +34,7 @@ export default function Modal({ visible, onClose, onAddLesson }) {
                   <Text style={styles.content}>Content</Text>
                   
                 <TextInput
-                  placeholder="Write your note here..."
+                  placeholder="Write your teacher here..."
                   multiline={true}
                   value={teacher}
                   onChangeText={setTeacher}
