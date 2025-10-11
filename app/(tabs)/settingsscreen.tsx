@@ -3,9 +3,19 @@ import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Divider } from 'react-native-paper';
+import { Dropdown } from 'react-native-element-dropdown';
+import { useState } from 'react';
+import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 
 export default function SettingsScreen() {  
+  const[theme, setTheme] = useState(null);
+  const [isFocus, setIsFocus] = useState(false);
+
+  const data = [
+    {label: "Dark", value: "dark"},
+    {label: "Light", value: "light"},
+  ];
+  
 return (
 
     <SafeAreaView style={styles.safeArea}>
@@ -40,8 +50,24 @@ return (
 
           <View style={styles.cardContent}>
             <Text style={styles.contentText}>Theme</Text>
-            <View style={styles.themeswitch}>
+            <View style={styles.themeRow}>
               <Text style={styles.themeText}>Choose your preferred theme</Text>
+            <Dropdown
+            style={[styles.dropdown, isFocus && { borderColor: "black" }]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            data={data}
+            labelField="label"
+            valueField="value"
+            placeholder={!isFocus ? "Select theme" : "Choose theme"}
+            value={theme}
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            onChange={(item) => {
+              setTheme(item.value);
+              setIsFocus(false);
+            }}
+            />
             </View>
           </View>
         </View>
@@ -178,15 +204,44 @@ const styles = StyleSheet.create({
     lineHeight: 30,
   },
 
-  themeswitch: {
-    lineHeight: 10,
-    margin: 0,  
-  },
-
   themeText: {
     fontSize: 13,
     color: 'grey',
   },
+
+  themeRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: -10,
+  },
+
+  dropdownarea: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  dropdown: {
+    height: 35,
+    borderColor: '#a8a8a86b',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    width: 140,
+    backgroundColor: 'white',
+  },
+  
+  placeholderStyle: {
+    fontSize: 14,
+    color: 'grey',
+  },
+
+  selectedTextStyle: {
+    fontSize: 14,
+    color: 'black',
+  },
+
 
   notifText: {
     fontSize: 12,
