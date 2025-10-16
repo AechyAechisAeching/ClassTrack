@@ -3,19 +3,37 @@ import { View, Text, StyleSheet, KeyboardAvoidingView, TouchableWithoutFeedback,
 import { TextInput } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
+import { Dropdown } from "react-native-element-dropdown";
+
 
 export default function Modal({ visible, onClose, onAddLesson }) {
     const [lessons, setLessons] = useState('');
     const [teacher, setTeacher] = useState('');
     const [classroom, setClassroom] = useState('');
-    
+    const [date, setDate] = useState('');
+
     const handleAdd = () => {
         if (lessons.trim() === '') return;
-        onAddLesson({ lessons, teacher, classroom });
+        onAddLesson({ lessons, teacher, classroom, date });
         setLessons('');
         setTeacher('');
         setClassroom('');
+        setDate('');
     };
+
+    const data = [
+      { label: "Monday", value: "monday"},
+      { label: "Tuesday", value: "tuesday"},
+      { label: "Wednesday", value: "wednesday"},
+      { label: "Thursday", value: "thursday"},
+      { label: "Friday", value: "friday"},
+      { label: "Saturday", value: "saturday"},
+      { label: "Sunday", value: "sunday"},
+      
+    ];
+
+    const [day, setDay] = useState(null);
+    const [isFocus, setIsFocus] = useState(false);
       
     return (
       <RNModal
@@ -61,7 +79,27 @@ export default function Modal({ visible, onClose, onAddLesson }) {
                   mode="outlined"
                   style={styles.inputclass}
                 />
-      
+      <Text style={styles.content}>
+                Day
+                    </Text>
+                   
+                     <Dropdown
+                style={[styles.dropdown, isFocus && { borderColor: "black" }]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                data={data}
+                labelField="label"
+                valueField="value"
+                placeholder={!isFocus ? "Choose day" : "What day"}
+                value={day}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
+                onChange={(day) => {
+                  setDay(day.value);
+                  setIsFocus(false);
+                }}
+              />
+
                 <View style={styles.modalButtons}>
 
                   <TouchableOpacity onPress={handleAdd}
@@ -70,6 +108,8 @@ export default function Modal({ visible, onClose, onAddLesson }) {
                     <Text style={styles.confirmButtonText}>
                       Add Lesson
                     </Text>
+                    
+                    
                   </TouchableOpacity>
                  
                   
@@ -168,6 +208,33 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 16,
     fontWeight: '500',
+  },
+
+  dropdownarea: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  dropdown: {
+    marginBottom: 25,
+    height: 40,
+    borderColor: "#a8a8a86b",
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    width: 310,
+    backgroundColor: "white",
+  },
+
+  placeholderStyle: {
+    fontSize: 14,
+    color: 'grey',
+  },
+
+  selectedTextStyle: {
+    fontSize: 14,
+    color: "black",
   },
   
 });

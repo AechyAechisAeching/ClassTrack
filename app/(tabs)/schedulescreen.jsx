@@ -2,7 +2,7 @@ import {View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Modal from '../components/ScheduleModal';
+import Modal from '../components/ui/ScheduleModal';
 import { useState } from 'react';
 import Schedule from '../components/Schedule';
 
@@ -35,6 +35,7 @@ export default function ScheduleScreen() {
                     Add Lesson
                 </Button>
             </View>
+            
             {lessons.length === 0 ? (
             <View style={styles.scheduledLessons}>
                     <Text style={styles.ScheduleInfo}>
@@ -44,7 +45,8 @@ export default function ScheduleScreen() {
             ) : (
                 <View style={styles.items}>
                           {lessons.map((item, index) => (
-                            <Schedule key={index} text={item.lessons} description={item.teacher} location={item.classroom}/>
+                            <Schedule key={index} text={item.lessons} description={item.teacher} location={item.classroom}
+                            date={item.daytime} />
                           ))}
                         </View>
                           )}

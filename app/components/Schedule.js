@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from 'react-native';
+import { Dropdown } from "react-native-element-dropdown";
 
-export default function Schedule({ text, description, location }) {
+export default function Schedule({ text, description, location, date }) {
     return (
         <View style={styles.ScheduleContainer}>
             <Text style={styles.ScheduleTitle}>{text}</Text>
@@ -9,6 +10,10 @@ export default function Schedule({ text, description, location }) {
                 </Text> : null}
                 {location ? <Text style={styles.classroom}>{location}
                 </Text> : null}
+
+                {date ? <Dropdown style={styles.day}>{date}
+
+                </Dropdown> : null}
         </View>
     )
 }
@@ -41,6 +46,11 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: 'grey',
         marginTop: 15,
+    },
+    day: {
+        fontSize: 14,
+        color: 'grey',
+        marginTop: 10,
     },
     
 });
