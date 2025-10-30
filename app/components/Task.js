@@ -1,12 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
 
-export default function Task({ text, description }) {
+export default function Task({ text, onRemove, description }) {
     return (
         <View style={styles.taskContainer}>
             <Text style={styles.taskTitle}>{text}</Text>
             {description ? <Text style={styles.taskdescription}>{description}
             </Text> : null}
+                 
+
+      <TouchableOpacity style={styles.removeButton} onPress={onRemove}>
+        <Ionicons name="trash-outline" size={24} color="#9c0000ff" />
+      </TouchableOpacity>
+
         </View>
     )
 }
@@ -34,5 +41,17 @@ const styles = StyleSheet.create({
     color: 'grey',
     marginTop: 15,
   },
-  
+
+  removeButton: {
+    position: 'absolute',
+    left: 310,
+    top: 15,
+    alignItems: 'center',
+    borderRadius: 12,
+    backgroundColor: '#ffffff1b',
+    width: 30,
+    justifyContent: 'center',
+
+  },
+
 });

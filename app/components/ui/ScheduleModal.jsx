@@ -11,7 +11,9 @@ export default function Modal({ visible, onClose, onAddLesson }) {
     const [teacher, setTeacher] = useState('');
     const [classroom, setClassroom] = useState('');
     const [date, setDate] = useState('');
-
+    const [day, setDay] = useState(null);
+    const [isFocus, setIsFocus] = useState(false);
+      
     const handleAdd = () => {
         if (lessons.trim() === '') return;
         onAddLesson({ lessons, teacher, classroom, date });
@@ -20,6 +22,7 @@ export default function Modal({ visible, onClose, onAddLesson }) {
         setClassroom('');
         setDate('');
     };
+
 
     const data = [
       { label: "Monday", value: "monday"},
@@ -32,9 +35,7 @@ export default function Modal({ visible, onClose, onAddLesson }) {
       
     ];
 
-    const [day, setDay] = useState(null);
-    const [isFocus, setIsFocus] = useState(false);
-      
+    
     return (
       <RNModal
       
@@ -87,11 +88,20 @@ export default function Modal({ visible, onClose, onAddLesson }) {
                 style={[styles.dropdown, isFocus && { borderColor: "black" }]}
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={styles.selectedTextStyle}
-                data={data}
+                data={[
+                { label: "Monday", value: "monday"},
+                { label: "Tuesday", value: "tuesday"},
+                { label: "Wednesday", value: "wednesday"},
+                { label: "Thursday", value: "thursday"},
+                { label: "Friday", value: "friday"},
+                { label: "Saturday", value: "saturday"},
+                { label: "Sunday", value: "sunday"},
+                ]}
+                
                 labelField="label"
                 valueField="value"
                 placeholder={!isFocus ? "Choose day" : "What day"}
-                value={day}
+                value={date}
                 onFocus={() => setIsFocus(true)}
                 onBlur={() => setIsFocus(false)}
                 onChange={(day) => {

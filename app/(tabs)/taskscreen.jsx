@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
@@ -14,6 +14,10 @@ export default function TasksScreen() {
     setTasks([...tasks, newTask]);
     setModalVisible(false);
   };
+
+  const removeTask = (removeItem) => {
+    setTasks(tasks.filter((_,index) => index !== removeItem));
+  }
 
   return (
     <SafeAreaView style={styles.SafeArea}>
@@ -44,15 +48,20 @@ export default function TasksScreen() {
         </View>
         ) : (
         <View style={styles.items}>
-          {tasks.map((item, index) => (
-            <Task key={index} text={item.task} description={item.description} />
-          ))}
+  {tasks.map((item, index) => (
+    <View key={index} style={styles.taskContainer}>
+      <Task text={item.task} description={item.description}  
+      onRemove={() => removeTask(index)}
+      />
+    </View>
+  ))}
         </View>
         )}
         <Modal
           visible={modalVisible}
           onClose={() => setModalVisible(false)}
           onAddTask={handleAddTask} />
+           
       </View>
     </SafeAreaView>
   );
@@ -128,4 +137,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   
+  taskContainer: {
+    fontSize: 16,
+    fontWeight: '500',
+  },
+
 });
