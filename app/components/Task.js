@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 
 export default function Task({ text, onRemove, description }) {
-    return (
+    
+  return (
         <View style={styles.taskContainer}>
             <Text style={styles.taskTitle}>{text}</Text>
             {description ? <Text style={styles.taskdescription}>{description}
             </Text> : null}
                  
-
+      <TouchableOpacity style={styles.editButton} onPress={() => console.log("Pressed Edit Button")}>
+        <Ionicons name="open-outline" size={24} color="#000000ff" />
+      </TouchableOpacity>
       <TouchableOpacity style={styles.removeButton} onPress={onRemove}>
         <Ionicons name="trash-outline" size={24} color="#9c0000ff" />
       </TouchableOpacity>
-
-        </View>
+</View>
     )
-}
+  }
+
 
 const styles = StyleSheet.create({
 
@@ -52,6 +55,17 @@ const styles = StyleSheet.create({
     width: 30,
     justifyContent: 'center',
 
+  },
+
+  editButton: {
+    position: 'absolute',
+    left: 270,
+    top: 15,
+    alignItems: 'center',
+    borderRadius: 12,
+    backgroundColor: '#ffffffff',
+    width: 30,
+    justifyContent: 'center',
   },
 
 });
