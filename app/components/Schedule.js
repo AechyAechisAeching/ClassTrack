@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet } from 'react-native';
-import { Dropdown } from "react-native-element-dropdown";
 
 export default function Schedule({ text, description, location, date }) {
     return (
@@ -11,9 +10,10 @@ export default function Schedule({ text, description, location, date }) {
                 {location ? <Text style={styles.classroom}>{location}
                 </Text> : null}
 
-                {date ? <Dropdown style={styles.day}>{date}
-
-                </Dropdown> : null}
+                {date ? 
+                (<Text style={styles.day}>
+                  {date.charAt(0).toUpperCase() + date.slice(1)}
+                </Text> ) : null}
         </View>
     )
 }

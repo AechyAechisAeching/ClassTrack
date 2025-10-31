@@ -16,24 +16,15 @@ export default function Modal({ visible, onClose, onAddLesson }) {
       
     const handleAdd = () => {
         if (lessons.trim() === '') return;
-        onAddLesson({ lessons, teacher, classroom, date });
+        onAddLesson({ lessons, teacher, classroom, date: day });
         setLessons('');
         setTeacher('');
         setClassroom('');
         setDate('');
+        setDay(null)
+        
     };
 
-
-    const data = [
-      { label: "Monday", value: "monday"},
-      { label: "Tuesday", value: "tuesday"},
-      { label: "Wednesday", value: "wednesday"},
-      { label: "Thursday", value: "thursday"},
-      { label: "Friday", value: "friday"},
-      { label: "Saturday", value: "saturday"},
-      { label: "Sunday", value: "sunday"},
-      
-    ];
 
     
     return (
@@ -97,11 +88,12 @@ export default function Modal({ visible, onClose, onAddLesson }) {
                 { label: "Saturday", value: "saturday"},
                 { label: "Sunday", value: "sunday"},
                 ]}
-                
+               
                 labelField="label"
                 valueField="value"
+                mode='modal'
                 placeholder={!isFocus ? "Choose day" : "What day"}
-                value={date}
+                value={day}
                 onFocus={() => setIsFocus(true)}
                 onBlur={() => setIsFocus(false)}
                 onChange={(day) => {
