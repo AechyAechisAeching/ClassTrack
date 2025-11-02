@@ -1,20 +1,43 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from 'react-native-paper';
 import Modal from '../components/ui/TaskModal';
 import Task from '../components/Task';
+import EditModal from '../components/ui/EditModal';
 
 export default function TasksScreen() {
   const [modalVisible, setModalVisible] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [editingTask, setEditingTask] = useState(null);
+  const [editingIndex, setEditingIndex] = useState(null);
 
   const handleAddTask = (newTask) => {
     setTasks([...tasks, newTask]);
     setModalVisible(false);
   };
+  const handleEditTask = (updatedTask) => {
+    const updatedTasks = [...tasks];
+    updatedTasks[editingIndex] = updatedTask;
+    setTasks(updatedTasks);
+    setEditModalVisible(false);
+    setEditingTask(null);
+    setEditingIndex(null);
+  }
 
+  const openEditModal = (index) => {
+    setEditingTask(tasks[index]);
+    setEditingIndex(index)
+    setEditModalVisible(true);
+  }
+
+ const closeEditModal = () => {
+    setEditModalVisible(false);
+    setEditingTask(null);
+    setEditingIndex(null);
+  };
   const removeTask = (removeItem) => {
     setTasks(tasks.filter((_,index) => index !== removeItem));
   }
@@ -53,6 +76,7 @@ export default function TasksScreen() {
     <View key={index} style={styles.taskContainer}>
       <Task text={item.task} description={item.description}  
       onRemove={() => removeTask(index)}
+      onEdit={() => openEditModal(index)}
       />
     </View>
   ))}
@@ -62,7 +86,13 @@ export default function TasksScreen() {
           visible={modalVisible}
           onClose={() => setModalVisible(false)}
           onAddTask={handleAddTask} />
-           
+
+          <EditModal
+          visible={editModalVisible}
+          onClose={closeEditModal}
+          onEditTask={handleEditTask}
+          task={editingTask}
+          />
       </View>
       </ScrollView>
     </SafeAreaView>

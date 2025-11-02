@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 
-export default function Task({ text, onRemove, description }) {
+export default function Task({ text, onRemove, onEdit, description }) {
     
   return (
         <View style={styles.taskContainer}>

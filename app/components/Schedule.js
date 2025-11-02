@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function Schedule({ text, description, location, date }) {
     return (
         <View style={styles.ScheduleContainer}>
-            <Text style={styles.ScheduleTitle}>{text} {date}</Text> 
+            <Text style={styles.ScheduleTitle}>{text}</Text> 
             {date ? 
                 (<Text style={styles.day}>
                   {date.charAt(0).toUpperCase() + date.slice(1)}
@@ -49,14 +49,14 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     day: {
-        fontSize: 14,
+    fontSize: 14,
     marginLeft: 0,
     color: "black",
     fontWeight: 500,
     backgroundColor: "#fff",
     borderColor: "#000",
     borderWidth: 0.5,
-    width: 80,
+    width: 100,
     borderRadius: 5.5,
     paddingLeft: 5.2,
     paddingRight: 5,
