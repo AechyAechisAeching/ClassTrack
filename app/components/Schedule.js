@@ -4,16 +4,17 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function Schedule({ text, description, location, date }) {
     return (
         <View style={styles.ScheduleContainer}>
-            <Text style={styles.ScheduleTitle}>{text}</Text>
+            <Text style={styles.ScheduleTitle}>{text} {date}</Text> 
+            {date ? 
+                (<Text style={styles.day}>
+                  {date.charAt(0).toUpperCase() + date.slice(1)}
+                </Text> ) : null}
                 {description ? <Text style={styles.Scheduledescription}>{description}
                 </Text> : null}
                 {location ? <Text style={styles.classroom}>{location}
                 </Text> : null}
 
-                {date ? 
-                (<Text style={styles.day}>
-                  {date.charAt(0).toUpperCase() + date.slice(1)}
-                </Text> ) : null}
+               
         </View>
     )
 }
@@ -49,9 +50,18 @@ const styles = StyleSheet.create({
     },
     day: {
         fontSize: 14,
-        color: 'grey',
-        marginTop: 10,
-        marginBottom: 30,
+    marginLeft: 0,
+    color: "black",
+    fontWeight: 500,
+    backgroundColor: "#fff",
+    borderColor: "#000",
+    borderWidth: 0.5,
+    width: 80,
+    borderRadius: 5.5,
+    paddingLeft: 5.2,
+    paddingRight: 5,
+    paddingTop: 2,
+    paddingBottom: 2,
     },
     
 });

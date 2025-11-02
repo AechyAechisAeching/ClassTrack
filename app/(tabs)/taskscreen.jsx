@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
@@ -21,6 +21,7 @@ export default function TasksScreen() {
 
   return (
     <SafeAreaView style={styles.SafeArea}>
+      <ScrollView>
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerLeft}>
@@ -63,6 +64,7 @@ export default function TasksScreen() {
           onAddTask={handleAddTask} />
            
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

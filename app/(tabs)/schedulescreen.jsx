@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,6 +17,7 @@ export default function ScheduleScreen() {
 
     return (
             <SafeAreaView style={styles.SafeArea}>
+                <ScrollView>
 
         <View style={styles.container}>
             <View style={styles.header}>
@@ -55,6 +56,7 @@ export default function ScheduleScreen() {
                           onClose={() => setModalVisible(false)}
                           onAddLesson={handleAddLesson} />
         </View>
+        </ScrollView>
         </SafeAreaView>
     )};
 

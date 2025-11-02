@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from 'react-native-paper';
@@ -16,6 +16,7 @@ export default function NotesScreen() {
   };
   return (
       <SafeAreaView style={styles.SafeArea}>
+        <ScrollView>
         <View style={styles.container}>
 
         
@@ -56,6 +57,7 @@ export default function NotesScreen() {
           onClose={() => setModalVisible(false)}
           onAddNote={handleAddNote} />
         </View>
+        </ScrollView>
       </SafeAreaView>
   );
 }

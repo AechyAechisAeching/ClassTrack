@@ -10,7 +10,7 @@ export default function Task({ text, onRemove, description }) {
             {description ? <Text style={styles.taskdescription}>{description}
             </Text> : null}
                  
-      <TouchableOpacity style={styles.editButton} onPress={() => console.log("Pressed Edit Button")}>
+      <TouchableOpacity style={styles.editButton} onPress={onEdit}>
         <Ionicons name="open-outline" size={24} color="#000000ff" />
       </TouchableOpacity>
       <TouchableOpacity style={styles.removeButton} onPress={onRemove}>
