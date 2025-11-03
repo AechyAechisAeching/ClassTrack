@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Modal as RNModal } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
+import ToggleSelector from "../ToggleSelector";
 
 export default function Modal({ visible, onClose, onAddTask }) {
   const [task, setTask] = useState('');
@@ -24,6 +25,16 @@ export default function Modal({ visible, onClose, onAddTask }) {
         <View style={styles.modalCard}>
           <Text style={styles.modalTitle}>Add a New Task</Text>
 
+          <View style={styles.priority}>
+            <Text style={styles.priorityText}>
+              Task Priority
+            </Text>
+            <ToggleSelector
+              options={["Low", "Medium", "High"]}
+              onSelect={(value) => console.log("Selected:", value)}
+            />
+          </View>
+
           <TextInput
             placeholder="Task Name"
             value={task}
@@ -44,14 +55,16 @@ export default function Modal({ visible, onClose, onAddTask }) {
             <Button
               mode="contained"
               onPress={handleAdd}
-              style={styles.confirmButton} >
+              style={styles.confirmButton}
+            >
               Add
             </Button>
 
             <Button
               mode="outlined"
               onPress={onClose}
-              style={styles.cancelButton} >
+              style={styles.cancelButton}
+            >
               Cancel
             </Button>
           </View>
@@ -102,6 +115,16 @@ const styles = StyleSheet.create({
 
   cancelButton: {
     borderColor: '#040009ff',
+  },
+
+  priority: {
+    padding: 0,
+  },
+
+  priorityText: {
+    textAlign: 'center',
+    fontSize: 22,
+    fontWeight: '700',
   },
   
 });

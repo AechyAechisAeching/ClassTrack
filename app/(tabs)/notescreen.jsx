@@ -67,6 +67,7 @@ export default function NotesScreen() {
               Add Note
             </Button>
           </View>
+
           {notes.length === 0 ? (
         <View style={styles.addedNotes}>
             <Text style={styles.notesContent}>

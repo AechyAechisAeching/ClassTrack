@@ -43,6 +43,7 @@ export default function Modal({ visible, onClose, onAddNote }) {
             style={styles.inputContent}
           />
 
+
           <View style={styles.modalButtons}>
             <Button
               mode="contained"
