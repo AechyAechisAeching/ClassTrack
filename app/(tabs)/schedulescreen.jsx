@@ -5,60 +5,106 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Modal from '../components/ui/ScheduleModal';
 import { useState } from 'react';
 import Schedule from '../components/Schedule';
+import LessonEditModal from '../components/ui/LessonEditModal';
 
 export default function ScheduleScreen() {
     const [modalVisible, setModalVisible] = useState(false);
     const [ lessons, setLessons] = useState([]);
+    const [editLessonModalVisible, setLessonEditModalVisible] = useState(false);
+    const [editingLesson, setEditingLesson] = useState(null);
+    const [editingIndex, setEditingIndex] = useState(null)
 
     const handleAddLesson = (newLesson) => {
         setLessons([...lessons, newLesson]);
         setModalVisible(false);
     };
+     
+   const handleEditLesson = (updatedLesson) => {
+    const updatedLessons = [...lessons];
+    updatedLessons[editingIndex] = updatedLesson;
+    setLessons(updatedLessons);
+    setLessonEditModalVisible(false);
+    setEditingLesson(null);
+    setEditingIndex(null);
+}
+
+const openLessonEditModal = (index) => {
+    setEditingLesson(lessons[index]);
+    setEditingIndex(index);
+    setLessonEditModalVisible(true);
+}
+ const closeLessonEditModal = () => {
+    setLessonEditModalVisible(false);
+    setEditingLesson(null);
+    setEditingIndex(null);
+ };
+
+ const removeLesson = (removeItem) => {
+    setLessons(lessons.filter((_,index) => index !== removeItem));
+ }
 
     return (
-            <SafeAreaView style={styles.SafeArea}>
-                <ScrollView>
-
-        <View style={styles.container}>
+      <SafeAreaView style={styles.SafeArea}>
+        <ScrollView>
+          <View style={styles.container}>
             <View style={styles.header}>
-                <View style={styles.headerLeft}>
-                  <Ionicons name="calendar-outline" size={30} color="black" style={styles.icon} />
-                <Text style={styles.headerText}>
-                    Schedule
-                </Text>
-                </View>
-                <Button
-                    icon="plus"
-                    mode="contained"
-                    onPress={() => setModalVisible(true)}
-                    style={styles.Button}
-                    labelStyle={styles.Label}>
-                    Add Lesson
-                </Button>
+              <View style={styles.headerLeft}>
+                <Ionicons
+                  name="calendar-outline"
+                  size={30}
+                  color="black"
+                  style={styles.icon}
+                />
+                <Text style={styles.headerText}>Schedule</Text>
+              </View>
+              <Button
+                icon="plus"
+                mode="contained"
+                onPress={() => setModalVisible(true)}
+                style={styles.Button}
+                labelStyle={styles.Label}
+              >
+                Add Lesson
+              </Button>
             </View>
-            
+
             {lessons.length === 0 ? (
-            <View style={styles.scheduledLessons}>
-                    <Text style={styles.ScheduleInfo}>
-                        No Lessons scheduled yet. Add your first lesson to get started!
-                    </Text>
-            </View>
+              <View style={styles.scheduledLessons}>
+                <Text style={styles.ScheduleInfo}>
+                  No Lessons scheduled yet. Add your first lesson to get
+                  started!
+                </Text>
+              </View>
             ) : (
-                <View style={styles.items}>
-                          {lessons.map((item, index) => (
-                            <Schedule key={index} text={item.lessons} description={item.teacher} location={item.classroom}
-                            date={item.date} />
-                          ))}
-                        </View>
-                          )}
-                          <Modal
-                          visible={modalVisible}
-                          onClose={() => setModalVisible(false)}
-                          onAddLesson={handleAddLesson} />
-        </View>
+              <View style={styles.items}>
+                {lessons.map((item, index) => (
+                  <Schedule
+                    key={index}
+                    text={item.lessons}
+                    description={item.teacher}
+                    location={item.classroom}
+                    date={item.date}
+                    onEdit={() => openLessonEditModal(index)}
+                    onRemove={() => removeLesson(index)}
+                  />
+                ))}
+              </View>
+            )}
+            <Modal
+              visible={modalVisible}
+              onClose={() => setModalVisible(false)}
+              onAddLesson={handleAddLesson}
+            />
+            <LessonEditModal
+              visible={editLessonModalVisible}
+              onClose={closeLessonEditModal}
+              onEditLesson={handleEditLesson}
+              lessons={editingLesson}
+            />
+          </View>
         </ScrollView>
-        </SafeAreaView>
-    )};
+      </SafeAreaView>
+    );};
 
 const styles = StyleSheet.create({
     SafeArea: {

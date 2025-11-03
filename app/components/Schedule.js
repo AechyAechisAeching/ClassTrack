@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
 
-export default function Schedule({ text, description, location, date }) {
+export default function Schedule({ text, description, onRemove, onEdit, location, date }) {
     return (
         <View style={styles.ScheduleContainer}>
             <Text style={styles.ScheduleTitle}>{text}</Text> 
@@ -13,6 +14,13 @@ export default function Schedule({ text, description, location, date }) {
                 </Text> : null}
                 {location ? <Text style={styles.classroom}>{location}
                 </Text> : null}
+                <TouchableOpacity style={styles.editButton} onPress={onEdit}>
+        <Ionicons name="open-outline" size={24} color="#000000ff" />
+      </TouchableOpacity>
+            <TouchableOpacity style={styles.removeButton} onPress={onRemove}>
+              <Ionicons name="trash-outline" size={24} color="#9c0000ff" />
+            </TouchableOpacity>
+      
 
                
         </View>
@@ -63,5 +71,27 @@ const styles = StyleSheet.create({
     paddingTop: 2,
     paddingBottom: 2,
     },
-    
+
+    editButton: {
+    position: 'absolute',
+    left: 270,
+    top: 15,
+    alignItems: 'center',
+    borderRadius: 12,
+    backgroundColor: '#ffffffff',
+    width: 30,
+    justifyContent: 'center',
+  },
+
+    removeButton: {
+    position: 'absolute',
+    left: 310,
+    top: 15,
+    alignItems: 'center',
+    borderRadius: 12,
+    backgroundColor: '#ffffff1b',
+    width: 30,
+    justifyContent: 'center',
+
+  },
 });
