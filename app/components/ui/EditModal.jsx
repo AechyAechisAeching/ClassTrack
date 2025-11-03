@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.32)',
   },
+
   modalCard: {
     backgroundColor: '#ffffff',
     borderRadius: 16,
@@ -78,25 +79,31 @@ const styles = StyleSheet.create({
     width: '85%',
     elevation: 5,
   },
+
   modalTitle: {
     textAlign: 'center',
     fontSize: 22,
     fontWeight: '700',
     marginBottom: 15,
   },
+
   input: {
     marginBottom: 20,
     height: 50,
   },
+
   modalButtons: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     gap: 10,
   },
+
   confirmButton: {
     backgroundColor: '#040009ff',
   },
+  
   cancelButton: {
     borderColor: '#040009ff',
   },
+  
 });

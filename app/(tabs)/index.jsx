@@ -57,12 +57,15 @@ export default function HomeScreen() {
                   <Text style={styles.boldText}>{nextClass.lessons}</Text>
                 </Text>
                 {nextClass.teacher && (
+                  
                   <Text style={styles.scheduleContent}>
+                  <Ionicons name="document-text-outline" size={16} color="#64748b" />
                     Teacher: {nextClass.teacher}
                   </Text>
                 )}
                 {nextClass.classroom && (
                   <Text style={styles.scheduleContent}>
+                  <Ionicons name="location-outline" size={16} color="#64748b" />
                     Room: {nextClass.classroom}
                   </Text>
                 )}
@@ -160,10 +163,15 @@ const styles = StyleSheet.create({
     lineHeight: 55,
   },
   classCard: {
-    backgroundColor: '#ffffff76',
+    backgroundColor: '#ffffffff',
     borderRadius: 12,
-    borderColor: '#dbdbdbff',
-    borderWidth: 1.5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
     padding: 16,
     marginVertical: 10,
     marginHorizontal: 10,
@@ -191,10 +199,17 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   taskCard: {
-    backgroundColor: '#ffffff76',
+    backgroundColor: '#ffffffff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
     borderRadius: 12,
-    borderColor: '#dbdbdbff',
-    borderWidth: 1.5,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+
+    
     padding: 16,
     marginVertical: 10,
     marginHorizontal: 10,
@@ -222,4 +237,5 @@ const styles = StyleSheet.create({
     color: '#999',
     marginLeft: 15,
   },
+  
 });

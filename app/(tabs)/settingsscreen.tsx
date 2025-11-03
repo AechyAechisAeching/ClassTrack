@@ -164,11 +164,16 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    backgroundColor: "#ffffff76",
+    backgroundColor: '#fff',
+        shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
     borderRadius: 12,
-    borderStyle: "solid",
-    borderColor: "#dbdbdbff",
-    borderWidth: 0.7,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+
     padding: 16,
     marginVertical: 10,
     marginHorizontal: 10,

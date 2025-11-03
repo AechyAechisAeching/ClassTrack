@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Modal as RNModal } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
+import { Dropdown } from "react-native-element-dropdown";
 
 export default function LessonEditModal({ visible, onClose, onEditLesson, lessons }) {
     const [lessonName, setLessonName] = useState('');
     const [teacher, setTeacher] = useState('');
     const [location, setLocation] = useState('');
     const [date, setDate] = useState('');
+    const [isFocus, setIsFocus] = useState(false);
+    const [day, setDay] = useState(null);
 
     useEffect(() => {
         if (lessons) {
@@ -58,13 +61,33 @@ export default function LessonEditModal({ visible, onClose, onEditLesson, lesson
                         mode="outlined"
                         style={styles.input}
                     />
-                    <TextInput
-                        placeholder="Day (e.g., monday)"
-                        value={date}
-                        onChangeText={setDate}
-                        mode="outlined"
-                        style={styles.input}
-                    />
+                      <Dropdown
+                style={[styles.dropdown, isFocus && { borderColor: "black" }]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                data={[
+                { label: "Monday", value: "monday"},
+                { label: "Tuesday", value: "tuesday"},
+                { label: "Wednesday", value: "wednesday"},
+                { label: "Thursday", value: "thursday"},
+                { label: "Friday", value: "friday"},
+                { label: "Saturday", value: "saturday"},
+                { label: "Sunday", value: "sunday"},
+                ]}
+               
+                labelField="label"
+                valueField="value"
+                mode='modal'
+                placeholder={!isFocus ? "Choose day" : "What day"}
+                value={day}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
+                onChange={(day) => {
+                  setDay(day.value);
+                  setIsFocus(false);
+                }}
+              />
+
                     <View style={styles.modalButtons}>
                         <Button
                             mode="contained"
@@ -94,6 +117,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.32)',
     },
+
     modalCard: {
         backgroundColor: '#ffffff',
         borderRadius: 16,
@@ -101,25 +125,48 @@ const styles = StyleSheet.create({
         width: '85%',
         elevation: 5,
     },
+    
     modalTitle: {
         textAlign: 'center',
         fontSize: 22,
         fontWeight: '700',
         marginBottom: 15,
     },
+
     input: {
         marginBottom: 20,
         height: 50,
     },
+
     modalButtons: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
         gap: 10,
     },
+
     confirmButton: {
         backgroundColor: '#040009ff',
     },
+
     cancelButton: {
         borderColor: '#040009ff',
     },
+
+    dropdownarea: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  dropdown: {
+    marginBottom: 25,
+    height: 40,
+    borderColor: "#0000006b",
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    width: 310,
+    backgroundColor: '#fff',
+  },
+  
 });

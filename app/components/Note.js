@@ -36,6 +36,7 @@ export default function Note({ text, onEdit, description, onRemove }) {
 }
 
 const styles = StyleSheet.create({
+
   noteContainer: {
     backgroundColor: '#fffbeb',
     borderRadius: 16,
@@ -49,21 +50,25 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fde68a',
   },
+
   contentWrapper: {
     padding: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
   },
+
   mainContent: {
     flex: 1,
     paddingRight: 12,
   },
+
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
   },
+
   noteIconContainer: {
     marginRight: 10,
     backgroundColor: '#fef3c7',
@@ -72,6 +77,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fde68a',
   },
+
   noteTitle: {
     fontSize: 17,
     fontWeight: '600',
@@ -79,19 +85,23 @@ const styles = StyleSheet.create({
     flex: 1,
     letterSpacing: -0.3,
   },
+
   descriptionContainer: {
     paddingLeft: 42,
     marginTop: 4,
   },
+
   notedescription: {
     fontSize: 14,
     color: '#000000ff',
     lineHeight: 15,
   },
+
   actionButtons: {
     flexDirection: 'column',
     gap: 8,
   },
+
   editButton: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -102,6 +112,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#bae6fd',
   },
+
   removeButton: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -112,4 +123,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fecaca',
   },
+  
 });

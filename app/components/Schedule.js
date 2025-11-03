@@ -61,16 +61,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#f1f5f9',
   },
+  
   contentWrapper: {
     padding: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
   },
+
   mainContent: {
     flex: 1,
     paddingRight: 12,
   },
+
   ScheduleTitle: {
     fontSize: 18,
     fontWeight: '600',
@@ -78,6 +81,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     letterSpacing: -0.3,
   },
+
   dateContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -90,17 +94,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#c7d2fe',
   },
+
   day: {
     fontSize: 13,
     fontWeight: '600',
     color: '#6366f1',
     marginLeft: 6,
   },
+
   infoRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 8,
   },
+
   Scheduledescription: {
     fontSize: 14,
     color: '#64748b',
@@ -108,6 +115,7 @@ const styles = StyleSheet.create({
     flex: 1,
     lineHeight: 20,
   },
+
   classroom: {
     fontSize: 14,
     color: '#64748b',
@@ -115,10 +123,12 @@ const styles = StyleSheet.create({
     flex: 1,
     fontWeight: '500',
   },
+
   actionButtons: {
     flexDirection: 'column',
     gap: 8,
   },
+
   editButton: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -129,6 +139,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#bae6fd',
   },
+
   removeButton: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -139,4 +150,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fecaca',
   },
+
 });

@@ -37,6 +37,7 @@ export default function Task({ text, onRemove, onEdit, description }) {
 }
 
 const styles = StyleSheet.create({
+
   taskContainer: {
     backgroundColor: '#ffffff',
     borderRadius: 16,
@@ -50,24 +51,29 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#f1f5f9',
   },
+
   contentWrapper: {
     padding: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
   },
+
   mainContent: {
     flex: 1,
     paddingRight: 12,
   },
+
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
   },
+
   checkboxPlaceholder: {
     marginRight: 10,
   },
+
   taskTitle: {
     fontSize: 17,
     fontWeight: '600',
@@ -75,12 +81,14 @@ const styles = StyleSheet.create({
     flex: 1,
     letterSpacing: -0.3,
   },
+
   descriptionRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     marginTop: 8,
     paddingLeft: 32,
   },
+
   taskdescription: {
     fontSize: 14,
     color: '#64748b',
@@ -88,10 +96,12 @@ const styles = StyleSheet.create({
     flex: 1,
     lineHeight: 20,
   },
+
   actionButtons: {
     flexDirection: 'column',
     gap: 8,
   },
+
   editButton: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -102,6 +112,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#bae6fd',
   },
+
   removeButton: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -112,4 +123,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fecaca',
   },
+  
 });
