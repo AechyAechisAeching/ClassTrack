@@ -5,15 +5,43 @@ import { Button } from 'react-native-paper';
 import Modal from "../components/ui/NoteModal";
 import { useState } from "react";
 import Note from "../components/Note";
+import NoteEditModal from "../components/ui/NoteEditModal"
 
 export default function NotesScreen() {
   const [modalVisible, setModalVisible] = useState(false);
+  const [NoteEditModalVisible, setNoteEditModalVisible] = useState(false);
   const [notes, setNotes] = useState([]);
+  const [editingNote, setEditingNote] = useState(null);
+  const [editingIndex, setEditingIndex] = useState(null);
 
   const handleAddNote = (newNote) => {
     setNotes([...notes, newNote]);
     setModalVisible(false);
   };
+  const handleEditNote = (updatedNote) => {
+    const updatedNotes = [...notes];
+    updatedNotes[editingIndex] = updatedNote;
+    setNotes(updatedNotes);
+    setNoteEditModalVisible(false);
+    setEditingNote(null);
+    setEditingIndex(null);
+  }
+
+  const openNoteEditModal = (index) => {
+    setEditingNote(notes[index]);
+    setEditingIndex(index)
+    setNoteEditModalVisible(true)
+  }
+
+  const closeNoteEditModal = () => {
+    setNoteEditModalVisible(false);
+    setEditingNote(null);
+    setEditingIndex(null);
+  };
+
+   const removeNote = (removeItem) => {
+    setNotes(notes.filter((_,index) => index !== removeItem))
+  }
   return (
       <SafeAreaView style={styles.SafeArea}>
         <ScrollView>
@@ -48,7 +76,9 @@ export default function NotesScreen() {
           ) : (
         <View style={styles.items}>
           {notes.map((item, index) => (
-            <Note key={index} text={item.note} description={item.description} />
+            <Note key={index} text={item.note} description={item.description}
+            onEdit={() => openNoteEditModal(index)}
+            onRemove={() => removeNote(index)} />
           ))}
         </View>
           )}
@@ -56,6 +86,14 @@ export default function NotesScreen() {
           visible={modalVisible}
           onClose={() => setModalVisible(false)}
           onAddNote={handleAddNote} />
+
+          <NoteEditModal
+          visible={NoteEditModalVisible}
+          onClose={closeNoteEditModal}
+          onEditNote={handleEditNote}
+          notes={editingNote}
+          />
+
         </View>
         </ScrollView>
       </SafeAreaView>

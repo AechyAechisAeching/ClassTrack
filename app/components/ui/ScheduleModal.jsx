@@ -10,7 +10,6 @@ export default function Modal({ visible, onClose, onAddLesson }) {
     const [lessons, setLessons] = useState('');
     const [teacher, setTeacher] = useState('');
     const [classroom, setClassroom] = useState('');
-    const [date, setDate] = useState('');
     const [day, setDay] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
       
@@ -20,7 +19,6 @@ export default function Modal({ visible, onClose, onAddLesson }) {
         setLessons('');
         setTeacher('');
         setClassroom('');
-        setDate('');
         setDay(null)
         
     };
