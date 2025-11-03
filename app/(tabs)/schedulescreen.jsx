@@ -6,13 +6,14 @@ import Modal from '../components/ui/ScheduleModal';
 import { useState } from 'react';
 import Schedule from '../components/Schedule';
 import LessonEditModal from '../components/ui/LessonEditModal';
+import { useApp } from '../context/AppContext';
 
 export default function ScheduleScreen() {
     const [modalVisible, setModalVisible] = useState(false);
-    const [ lessons, setLessons] = useState([]);
+    const { lessons, setLessons } = useApp();
     const [editLessonModalVisible, setLessonEditModalVisible] = useState(false);
     const [editingLesson, setEditingLesson] = useState(null);
-    const [editingIndex, setEditingIndex] = useState(null)
+    const [editingIndex, setEditingIndex] = useState(null);
 
     const handleAddLesson = (newLesson) => {
         setLessons([...lessons, newLesson]);

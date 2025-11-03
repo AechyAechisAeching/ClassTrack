@@ -9,7 +9,7 @@ export default function Task({ text, onRemove, onEdit, description }) {
         <View style={styles.mainContent}>
           <View style={styles.titleRow}>
             <View style={styles.checkboxPlaceholder}>
-              <Ionicons name="checkmark-circle-outline" size={22} color="#10b981" />
+              <Ionicons name="checkmark-circle-outline" size={22} color="#065a3eff" />
             </View>
             <Text style={styles.taskTitle}>{text}</Text>
           </View>

@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
   },
   notedescription: {
     fontSize: 14,
-    color: '#92400e',
-    lineHeight: 20,
+    color: '#000000ff',
+    lineHeight: 15,
   },
   actionButtons: {
     flexDirection: 'column',

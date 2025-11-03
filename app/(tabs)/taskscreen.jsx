@@ -6,11 +6,12 @@ import { Button } from 'react-native-paper';
 import Modal from '../components/ui/TaskModal';
 import Task from '../components/Task';
 import EditModal from '../components/ui/EditModal';
+import { useApp } from '../context/AppContext';
 
 export default function TasksScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const { tasks, setTasks } = useApp();
   const [editingTask, setEditingTask] = useState(null);
   const [editingIndex, setEditingIndex] = useState(null);
 

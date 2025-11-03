@@ -3,13 +3,12 @@ import { Ionicons } from '@expo/vector-icons';
 import PagerView from 'react-native-pager-view';
 import { useRef, useState } from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
-
-
 import HomeScreen from './index';
 import ScheduleScreen from './schedulescreen';
 import TasksScreen from './taskscreen';
 import NotesScreen from './notescreen';
 import SettingsScreen from './settingsscreen';
+import { AppProvider } from '../context/AppContext';
 
 function TopNavigation({ onTabPress, currentPage }) {
   const navItems = [
@@ -54,33 +53,35 @@ export default function TabLayout() {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-    <View style={{ flex: 1 }}>
-      <TopNavigation onTabPress={handleTabPress} currentPage={currentPage} />
-      <PagerView
-        ref={pagerRef}
-        style={styles.pagerView}
-        initialPage={0}
-        onPageSelected={(e) => setCurrentPage(e.nativeEvent.position)}
-      >
-        <View key="1" style={styles.page}>
-          <HomeScreen />
+    <AppProvider>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={{ flex: 1 }}>
+          <TopNavigation onTabPress={handleTabPress} currentPage={currentPage} />
+          <PagerView
+            ref={pagerRef}
+            style={styles.pagerView}
+            initialPage={0}
+            onPageSelected={(e) => setCurrentPage(e.nativeEvent.position)}
+          >
+            <View key="1" style={styles.page}>
+              <HomeScreen />
+            </View>
+            <View key="2" style={styles.page}>
+              <ScheduleScreen />
+            </View>
+            <View key="3" style={styles.page}>
+              <TasksScreen />
+            </View>
+            <View key="4" style={styles.page}>
+              <NotesScreen />
+            </View>
+            <View key="5" style={styles.page}>
+              <SettingsScreen />
+            </View>
+          </PagerView>
         </View>
-        <View key="2" style={styles.page}>
-          <ScheduleScreen />
-        </View>
-        <View key="3" style={styles.page}>
-          <TasksScreen />
-        </View>
-        <View key="4" style={styles.page}>
-          <NotesScreen />
-        </View>
-        <View key="5" style={styles.page}>
-          <SettingsScreen />
-        </View>
-      </PagerView>
-    </View>
-     </SafeAreaView>
+      </SafeAreaView>
+    </AppProvider>
   );
 }
 
@@ -89,7 +90,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
-
   topNav: {
     flexDirection: 'row',
     backgroundColor: '#ececf0',
