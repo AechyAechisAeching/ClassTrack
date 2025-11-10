@@ -20,7 +20,7 @@ export default function Schedule({ text, description, onRemove, onEdit, location
           
           {description && (
             <View style={styles.infoRow}>
-              <Ionicons name="document-text-outline" size={16} color="#64748b" />
+              <Ionicons name="person-outline" size={16} color="#64748b" />
               <Text style={styles.Scheduledescription}>{description}</Text>
             </View>
           )}

@@ -59,7 +59,7 @@ export default function HomeScreen() {
                 {nextClass.teacher && (
                   
                   <Text style={styles.scheduleContent}>
-                  <Ionicons name="document-text-outline" size={16} color="#64748b" />
+                  <Ionicons name="person-outline" size={16} color="#64748b" />
                     Teacher: {nextClass.teacher}
                   </Text>
                 )}
@@ -190,6 +190,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'grey',
     marginTop: 4,
+
   },
   boldText: {
     fontWeight: '600',

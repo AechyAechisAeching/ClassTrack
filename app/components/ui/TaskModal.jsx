@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Modal as RNModal } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
-import ToggleSelector from "../ToggleSelector";
+import OptionSelector from '../OptionSelector';
 
 export default function Modal({ visible, onClose, onAddTask }) {
   const [task, setTask] = useState('');
   const [description, setDescription] = useState('');
+  const [priority, setPriority] = useState('Low');
 
   const handleAdd = () => {
     if (task.trim() === '') return;
-    onAddTask({ task, description });
+    onAddTask({ task, description, priority });
     setTask('');
     setDescription('');
+    setPriority('Low');
   };
 
   return (
@@ -29,10 +31,9 @@ export default function Modal({ visible, onClose, onAddTask }) {
             <Text style={styles.priorityText}>
               Task Priority
             </Text>
-            <ToggleSelector
+            <OptionSelector
               options={["Low", "Medium", "High"]}
-              onSelect={(value) => console.log("Selected:", value)}
-            />
+              onSelect={setPriority} />
           </View>
 
           <TextInput
@@ -118,7 +119,9 @@ const styles = StyleSheet.create({
   },
 
   priority: {
-    padding: 0,
+    paddingBottom: 15,
+    alignItems: 'center',
+    
   },
 
   priorityText: {

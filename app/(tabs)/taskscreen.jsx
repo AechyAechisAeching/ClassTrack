@@ -75,9 +75,14 @@ export default function TasksScreen() {
         <View style={styles.items}>
   {tasks.map((item, index) => (
     <View key={index} style={styles.taskContainer}>
-      <Task text={item.task} description={item.description}  
+      <Task text={item.task} description={item.description} priority={item.priority} 
       onRemove={() => removeTask(index)}
       onEdit={() => openEditModal(index)}
+      onPriorityChange={(value) => {
+        const updatedTasks = [...tasks];
+        updatedTasks[index].priority = value;
+        setTasks(updatedTasks);
+      }}
       />
     </View>
   ))}
