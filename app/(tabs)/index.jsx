@@ -3,6 +3,7 @@ import React from 'react'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useApp } from '../context/AppContext';
+import OptionSelector from '../components/OptionSelector';
 
 export default function HomeScreen() {
 
@@ -114,9 +115,18 @@ export default function HomeScreen() {
                         <Ionicons name="checkbox-outline" size={20} color="#3b82f6" />
                       </View>
                       <View style={styles.taskTextContainer}>
+                        <View style={styles.taskTopRow}>
                         <Text style={styles.taskContent}>
                           <Text style={styles.boldText}>{task.task}</Text>
                         </Text>
+                        {task.priority && (
+                          <OptionSelector
+                          options={["Low", "Medium", "High"]}
+                          initialValue={task.priority}
+                          displayOnly={true}
+                          />
+                        )}
+                        </View>
                         {task.description && (
                           <Text style={styles.taskDescription}>{task.description}</Text>
                         )}
@@ -132,7 +142,7 @@ export default function HomeScreen() {
               )}
            <View style={styles.noteCard}>
   <View style={styles.contentWrapper}>
-    <View style={styles.taskHeader}>
+    <View style={styles.noteHeader}>
       <Ionicons 
         name="document-text-outline" 
         size={28} 
@@ -265,6 +275,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
 
+  taskTopRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 4,
+  },
+
   classCardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -325,6 +342,13 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
 
+  noteHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: -5,
+    marginBottom: 2,
+  },
+
   taskTitle: {
     fontSize: 18,
     fontWeight: '600',
@@ -364,10 +388,15 @@ const styles = StyleSheet.create({
   },
 
   noteContent: {
-    fontSize: 15,
-    color: '#0f172a',
-    fontWeight: '600',
-    letterSpacing: -0.3,
+     color: 'grey',
+      marginTop: 10,
+     backgroundColor: '#ffffff1b',
+     borderRadius: 12,
+     borderColor: '#6e6e6e32',
+     borderWidth: 1,
+     padding: 16,
+     marginVertical: 10,
+     marginHorizontal: 10,
   },
 
   noteDescription: {
