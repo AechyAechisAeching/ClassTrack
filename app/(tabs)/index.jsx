@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, Text, Dimensions, View } from 'react-native'
-import React, { useState, useRef } from 'react'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useApp } from '../context/AppContext';
@@ -8,16 +8,6 @@ export default function HomeScreen() {
 
 
   const {tasks, lessons, notes} = useApp();
-  const { width } = Dimensions.get('window');
-  const CARD_WIDTH = width - 30; 
-  const [activeCard, setActiveCard] = useState(0);
-  const scrollViewRef = useRef(null);
-
-  const handleScroll = (event) => {
-    const scrollPosition = event.nativeEvent.contentOffset.x;
-    const index = Math.round(scrollPosition / CARD_WIDTH);
-    setActiveCard(index);
-  };
 
 
   const getTodaysDate = () => {
@@ -106,19 +96,7 @@ export default function HomeScreen() {
             </View>
           )}
 
-          <ScrollView
-            ref={scrollViewRef}
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}
-            onScroll={handleScroll}
-            scrollEventThrottle={16}
-            decelerationRate="fast"
-            snapToInterval={CARD_WIDTH}
-            snapToAlignment="center"
-            contentContainerStyle={{ paddingHorizontal: 0 }}>
-
-            <View style={[styles.taskCard, { width: CARD_WIDTH, marginHorizontal: 0, width: 380, height: 200 }]}>
+           <View style={styles.taskCard}>
               <View style={styles.taskHeader}>
                 <Ionicons 
                   name="checkmark-circle-outline" 
@@ -130,53 +108,67 @@ export default function HomeScreen() {
               </View>
               {PriorityTasks.length > 0 ? (
                 PriorityTasks.map((task, index) => (
-                  <View key={index} style={styles.taskItem}>
-                    <Text style={styles.taskContent}>
-                      • <Text style={styles.boldText}>{task.task}</Text>
-                    </Text>
-                    {task.description && (
-                      <Text style={styles.taskDescription}>  {task.description}</Text>
+                  <View key={index}>
+                    <View style={styles.individualTaskCard}>
+                      <View style={styles.taskIconContainer}>
+                        <Ionicons name="checkbox-outline" size={20} color="#3b82f6" />
+                      </View>
+                      <View style={styles.taskTextContainer}>
+                        <Text style={styles.taskContent}>
+                          <Text style={styles.boldText}>{task.task}</Text>
+                        </Text>
+                        {task.description && (
+                          <Text style={styles.taskDescription}>{task.description}</Text>
+                        )}
+                      </View>
+                    </View>
+                    {index < PriorityTasks.length - 1 && (
+                      <View style={styles.divider} />
                     )}
                   </View>
                 ))
               ) : (
                 <Text style={styles.taskContent}>No tasks added yet</Text>
               )}
-            </View>
-            <View style={[styles.noteCard, { width: CARD_WIDTH, marginHorizontal: 0, marginLeft: 0 }]}>
-              <View style={styles.contentWrapper}>
-              <View style={styles.taskHeader}>
-                <Ionicons 
-                  name="document-text-outline" 
-                  size={28} 
-                  color="black" 
-                  style={styles.icon} 
-                />
-                <Text style={styles.taskTitle}>Priority Notes</Text>
-              </View>
-              </View>
-              {PriorityNotes.length > 0 ? (
-                PriorityNotes.map((note, index) => (
-                  <View key={index} style={styles.noteItem}>
-                    <Text style={styles.noteContent}>
-                      • <Text style={styles.boldText}>{note.note}</Text>
-                    </Text>
-                    {note.description && (
-                      <Text style={styles.noteDescription}>  {note.description}</Text>
-                    )}
-                  </View>
-                ))
-              ) : (
-                <Text style={styles.noteContent}>No notes added yet</Text>
-              )}
-            </View>
-         
-          </ScrollView>
-
-          <View style={styles.pagination}>
-            <View style={[styles.dot, activeCard === 0 && styles.activeDot]} />
-            <View style={[styles.dot, activeCard === 1 && styles.activeDot]} />
+           <View style={styles.noteCard}>
+  <View style={styles.contentWrapper}>
+    <View style={styles.taskHeader}>
+      <Ionicons 
+        name="document-text-outline" 
+        size={28} 
+        color="black" 
+        style={styles.icon} 
+      />
+      <Text style={styles.noteTitle}>Priority Notes</Text>
+    </View>
+  </View>
+  {PriorityNotes.length > 0 ? (
+    PriorityNotes.map((note, index) => (
+      <View key={index}>
+        <View style={styles.individualNoteCard}>
+          <View style={styles.noteIconContainer}>
+            <Ionicons name="bookmark-outline" size={20} color="#f59e0b" />
           </View>
+          <View style={styles.noteTextContainer}>
+            <Text style={styles.noteContent}>
+              <Text style={styles.boldText}>{note.note}</Text>
+            </Text>
+            {note.description && (
+              <Text style={styles.noteDescription}>{note.description}</Text>
+            )}
+          </View>
+        </View>
+        {index < PriorityNotes.length - 1 && (
+          <View style={styles.noteDivider} />
+        )}
+      </View>
+    ))
+  ) : (
+    <Text style={styles.noteContent}>No notes added yet</Text>
+  )}
+</View>
+            </View>
+
 
         </View>
       </ScrollView>
@@ -246,10 +238,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
 
-  noteCard: {
+  individualNoteCard: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
     backgroundColor: '#fffbebff',
-    borderRadius: 16,
-    marginVertical: 8,
+    borderRadius: 8,
+    padding: 12,
     marginHorizontal: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -258,6 +252,10 @@ const styles = StyleSheet.create({
     elevation: 3,
     borderWidth: 1,
     borderColor: '#fde68a',
+  },
+  
+  noteTextContainer: {
+    flex: 1,
   },
 
   contentWrapper: {
@@ -294,7 +292,9 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 
-  taskCard: {
+  individualTaskCard: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
     backgroundColor: '#ebf5ffff',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -309,10 +309,20 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
 
+  taskIconContainer: {
+    marginRight: 12,
+    marginTop: 2,
+  },
+
+  taskTextContainer: {
+    flex: 1,
+  },
+
   taskHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginLeft: 10,
+    marginBottom: 2,
   },
 
   taskTitle: {
@@ -321,10 +331,22 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
 
+  noteTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginLeft: 6,
+  },
+
   taskContent: {
-    fontSize: 15,
-    color: 'grey',
-    marginTop: 4,
+      color: 'grey',
+      marginTop: 10,
+     backgroundColor: '#ffffff1b',
+     borderRadius: 12,
+     borderColor: '#6e6e6e32',
+     borderWidth: 1,
+     padding: 16,
+     marginVertical: 10,
+     marginHorizontal: 10,
   },
 
   taskItem: {
@@ -332,9 +354,9 @@ const styles = StyleSheet.create({
   },
 
   taskDescription: {
-    fontSize: 14,
+    fontSize: 15,
     color: '#999',
-    marginLeft: 15,
+    marginTop: 4,
   },
   
   noteItem: {
@@ -343,8 +365,9 @@ const styles = StyleSheet.create({
 
   noteContent: {
     fontSize: 15,
-    color: 'grey',
-    marginTop: 4,
+    color: '#0f172a',
+    fontWeight: '600',
+    letterSpacing: -0.3,
   },
 
   noteDescription: {
@@ -354,25 +377,19 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 
-  pagination: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 15,
-    marginBottom: 10,
-  },
-  
-  dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#d1d5db',
-    marginHorizontal: 4,
+  divider: {
+  height: 1,
+  backgroundColor: '#bfdbfe',
+  marginVertical: 12,
+  marginHorizontal: 4,
+},
+
+  noteDivider: {
+  height: 1,
+  backgroundColor: '#fde68a',
+  marginVertical: 12,
+  marginHorizontal: 4,
   },
 
-  activeDot: {
-    backgroundColor: '#000',
-    width: 24,
-  },
 
 });
