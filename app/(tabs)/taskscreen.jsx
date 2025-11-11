@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
-import { Button } from 'react-native-paper';
+import { ActivityIndicator, Button } from 'react-native-paper';
 import Modal from '../components/ui/TaskModal';
 import Task from '../components/Task';
 import EditModal from '../components/ui/EditModal';
@@ -11,7 +11,7 @@ import { useApp } from '../context/AppContext';
 export default function TasksScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
-  const { tasks, setTasks } = useApp();
+  const { tasks, setTasks, isLoading } = useApp();
   const [editingTask, setEditingTask] = useState(null);
   const [editingIndex, setEditingIndex] = useState(null);
 
@@ -43,6 +43,15 @@ export default function TasksScreen() {
     setTasks(tasks.filter((_,index) => index !== removeItem));
   }
 
+  if (isLoading) {
+    return(
+      <SafeAreaView style={styles.SafeArea}>
+        <View style={[styles.container, styles.Content]}>
+          <ActivityIndicator size="large" color="#040009ff" />
+        </View>
+      </SafeAreaView>
+    )
+  }
   return (
     <SafeAreaView style={styles.SafeArea}>
       <ScrollView>
@@ -112,6 +121,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 
+  centerContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  
   container: {
     flex: 1,
     paddingVertical: 0,

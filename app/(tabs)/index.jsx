@@ -7,7 +7,7 @@ import { useApp } from '../context/AppContext';
 export default function HomeScreen() {
 
 
-  const {tasks, lessons} = useApp();
+  const {tasks, lessons, notes} = useApp();
 
 
   const getTodaysDate = () => {
@@ -24,6 +24,8 @@ export default function HomeScreen() {
   const nextClass = todayLessons.length > 0 ? todayLessons[0] : null;
 
   const PriorityTasks = tasks.slice(0, 3);
+
+  const PriorityNotes = notes.slice(0, 3);
 
   return (
        <SafeAreaView style={styles.safeArea}>
@@ -118,6 +120,23 @@ export default function HomeScreen() {
             ) : (
               <Text style={styles.taskContent}>No tasks added yet</Text>
             )}
+
+            <Text style={styles.taskTitle}>Priority Notes</Text>
+            {PriorityNotes.length > 0 ? (
+              PriorityNotes.map((note, index) => (
+                <View key={index} style={styles.taskItem}>
+                  <Text style={styles.taskContent}>
+                    • <Text style={styles.boldText}>{note.note}</Text>
+                  </Text>
+                  {note.description && (
+                    <Text style={styles.taskDescription}>{note.description}</Text>
+                  )}
+                </View>
+              ))
+            ) : (
+              <Text style={styles.taskContent}>No notes added yet</Text>
+            )}
+
           </View>
         </View>
       </ScrollView>

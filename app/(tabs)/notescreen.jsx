@@ -1,16 +1,17 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from 'react-native-paper';
 import Modal from "../components/ui/NoteModal";
 import { useState } from "react";
 import Note from "../components/Note";
-import NoteEditModal from "../components/ui/NoteEditModal"
+import NoteEditModal from "../components/ui/NoteEditModal";
+import { useApp } from "../context/AppContext";
 
 export default function NotesScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [NoteEditModalVisible, setNoteEditModalVisible] = useState(false);
-  const [notes, setNotes] = useState([]);
+  const { notes, setNotes, isLoading } = useApp();
   const [editingNote, setEditingNote] = useState(null);
   const [editingIndex, setEditingIndex] = useState(null);
 
@@ -42,6 +43,17 @@ export default function NotesScreen() {
    const removeNote = (removeItem) => {
     setNotes(notes.filter((_,index) => index !== removeItem))
   }
+
+    if (isLoading) {
+    return(
+      <SafeAreaView style={styles.SafeArea}>
+        <View style={[styles.container, styles.Content]}>
+          <ActivityIndicator size="large" color="#040009ff" />
+        </View>
+      </SafeAreaView>
+    )
+  }
+
   return (
       <SafeAreaView style={styles.SafeArea}>
         <ScrollView>
@@ -103,72 +115,75 @@ export default function NotesScreen() {
 
 const styles = StyleSheet.create({
   SafeArea: {
-        flex: 1,
-        backgroundColor: '#fff',
-    },
-    
-    container: {
-        flex: 1,
-        paddingVertical: 0,
-        paddingHorizontal: 15,
-        backgroundColor: '#fff',
-    },
+    flex: 1,
+    backgroundColor: "#fff",
+  },
 
-    icon: {
-        marginTop: 10,
-    },
+  centerContent: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
+  container: {
+    flex: 1,
+    paddingVertical: 0,
+    paddingHorizontal: 15,
+    backgroundColor: "#fff",
+  },
 
-    headerLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
+  icon: {
+    marginTop: 10,
+  },
 
-    headerText: {
-        fontSize: 20,
-        marginTop: 10,
-        marginLeft: 10,
-        fontWeight: '700',
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
 
-    },
-     Button: {
-        marginTop: 10,
-        marginLeft: 130,
-        alignItems: 'center',
-        borderRadius: 12,
-        backgroundColor: '#040009ff',
-        paddingHorizontal: 14,
-        paddingVertical: 3,
-    },
+  headerLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
 
-    Label: {
-        fontSize: 14,
-        fontWeight: "600",
-        color: "white",
-    },
+  headerText: {
+    fontSize: 20,
+    marginTop: 10,
+    marginLeft: 10,
+    fontWeight: "700",
+  },
+  Button: {
+    marginTop: 10,
+    marginLeft: 130,
+    alignItems: "center",
+    borderRadius: 12,
+    backgroundColor: "#040009ff",
+    paddingHorizontal: 14,
+    paddingVertical: 3,
+  },
 
-    addedNotes: {
-     marginTop: 40,
-     backgroundColor: '#ffffff1b',
-     borderRadius: 12,
-     borderColor: '#6e6e6e32',
-     borderWidth: 1,
-     padding: 16,
-     marginVertical: 10,
-     marginHorizontal: 10,
-    },
-    
-    notesContent: {        
-        padding: 10,
-        color: 'grey',
-    },
+  Label: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "white",
+  },
 
-    items: {
-      marginTop: 20,
-    },
+  addedNotes: {
+    marginTop: 40,
+    backgroundColor: "#ffffff1b",
+    borderRadius: 12,
+    borderColor: "#6e6e6e32",
+    borderWidth: 1,
+    padding: 16,
+    marginVertical: 10,
+    marginHorizontal: 10,
+  },
 
+  notesContent: {
+    padding: 10,
+    color: "grey",
+  },
+
+  items: {
+    marginTop: 20,
+  },
 });

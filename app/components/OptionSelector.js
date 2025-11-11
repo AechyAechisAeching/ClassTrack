@@ -5,7 +5,7 @@ export default function OptionSelector({
   options = ["Low", "Medium", "High"],
   onSelect,
   initialValue,
-  displayOnly = false, // For showing just the selected value
+  displayOnly = false,
 }) {
   const [selected, setSelected] = useState(initialValue || options[0]);
 
@@ -33,7 +33,6 @@ export default function OptionSelector({
     }
   };
 
-  // Display only mode - just show the badge
   if (displayOnly) {
     const colors = getPriorityColor(selected);
     return (
@@ -43,7 +42,6 @@ export default function OptionSelector({
     );
   }
 
-  // Full selector mode
   return (
     <View style={styles.container}>
       {options.map((option) => {

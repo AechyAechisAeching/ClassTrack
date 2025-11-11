@@ -75,10 +75,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
-    gap: 8,  // Add this for spacing
+    gap: 8,
   },
   checkboxPlaceholder: {
-    marginRight: 2,  // Reduce this
+    marginRight: 2,
   },
   taskTitle: {
     fontSize: 17,
