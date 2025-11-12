@@ -40,6 +40,12 @@ export default function NotesScreen() {
     setEditingIndex(null);
   };
 
+   const toggleNoteCompletion = (index) => {
+  const updatedNotes = [...notes];
+  updatedNotes[index].completed = !updatedNotes[index].completed;
+  setNotes(updatedNotes);
+};
+
    const removeNote = (removeItem) => {
     setNotes(notes.filter((_,index) => index !== removeItem))
   }
@@ -89,7 +95,8 @@ export default function NotesScreen() {
           ) : (
         <View style={styles.items}>
           {notes.map((item, index) => (
-            <Note key={index} text={item.note} description={item.description}
+            <Note key={index} text={item.note} description={item.description} completed={item.completed || false}
+            onToggleComplete={() => toggleNoteCompletion(index)}
             onEdit={() => openNoteEditModal(index)}
             onRemove={() => removeNote(index)} />
           ))}

@@ -2,16 +2,25 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 
-export default function Note({ text, onEdit, description, onRemove }) {
+export default function Note({ text, onEdit, description, onRemove, completed = false, onToggleComplete }) {
   return (
     <View style={styles.noteContainer}>
-      <View style={styles.contentWrapper}>
-        <View style={styles.mainContent}>
-          <View style={styles.titleRow}>
-            <View style={styles.noteIconContainer}>
-              <Ionicons name="document-text" size={20} color="#f59e0b" />
-            </View>
-            <Text style={styles.noteTitle}>{text}</Text>
+          <View style={styles.contentWrapper}>
+            <View style={styles.mainContent}>
+              <View style={styles.titleRow}>
+                <View style={styles.noteIconContainer}>
+                <TouchableOpacity 
+                  style={styles.checkboxPlaceholder} 
+                  onPress={onToggleComplete}>
+                  <Ionicons 
+                    name={completed ? "document-text" : "document-text"} 
+                    size={22} 
+                    color={completed ? "#065a3eff" : "#f59e0b"} />
+                </TouchableOpacity>
+                </View>
+                <Text style={[
+                  styles.noteTitle,
+                  completed && styles.noteTitleCompleted]}>{text}</Text>
           </View>
           
           {description && (
@@ -123,5 +132,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fecaca',
   },
+
+   noteTitleCompleted: {
+  textDecorationLine: 'line-through',
+  color: '#94a3b8',
+  opacity: 0.7,
+},
+
+  descriptionCompleted: {
+  textDecorationLine: 'line-through',
+  opacity: 0.6,
+},
   
 });
