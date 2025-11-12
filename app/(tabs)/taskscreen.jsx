@@ -19,6 +19,12 @@ export default function TasksScreen() {
     setTasks([...tasks, newTask]);
     setModalVisible(false);
   };
+
+  const toggleTaskCompletion = (index) => {
+  const updatedTasks = [...tasks];
+  updatedTasks[index].completed = !updatedTasks[index].completed;
+  setTasks(updatedTasks);
+};
   const handleEditTask = (updatedTask) => {
     const updatedTasks = [...tasks];
     updatedTasks[editingIndex] = updatedTask;
@@ -84,7 +90,8 @@ export default function TasksScreen() {
         <View style={styles.items}>
   {tasks.map((item, index) => (
     <View key={index} style={styles.taskContainer}>
-      <Task text={item.task} description={item.description} priority={item.priority} 
+      <Task text={item.task} description={item.description} priority={item.priority} completed={item.completed || false}
+      onToggleComplete={() => toggleTaskCompletion(index)}
       onRemove={() => removeTask(index)}
       onEdit={() => openEditModal(index)}
       onPriorityChange={(value) => {

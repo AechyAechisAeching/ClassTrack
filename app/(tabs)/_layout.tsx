@@ -27,13 +27,13 @@ function TopNavigation({ onTabPress, currentPage }) {
           <TouchableOpacity
             key={item.name}
             style={[styles.navItem, isActive && styles.activeNavItem]}
-            onPress={() => onTabPress(index)}
-          >
+            onPress={() => onTabPress(index)}>
+
             <Ionicons
               name={item.icon as any}
               size={20}
-              color="#000000ff"
-            />
+              color="#000000ff"/>
+
             <Text style={[styles.navText, isActive && styles.activeNavText]}>
               {item.title}
             </Text>
@@ -56,13 +56,13 @@ export default function TabLayout() {
     <AppProvider>
       <SafeAreaView style={styles.safeArea}>
         <View style={{ flex: 1 }}>
-          <TopNavigation onTabPress={handleTabPress} currentPage={currentPage} />
+          <TopNavigation onTabPress={handleTabPress} currentPage={currentPage}/>
           <PagerView
             ref={pagerRef}
             style={styles.pagerView}
             initialPage={0}
-            onPageSelected={(e) => setCurrentPage(e.nativeEvent.position)}
-          >
+            onPageSelected={(e) => setCurrentPage(e.nativeEvent.position)}>
+
             <View key="1" style={styles.page}>
               <HomeScreen />
             </View>
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
+
   topNav: {
     flexDirection: 'row',
     backgroundColor: '#ececf0',
@@ -99,6 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
+
   navItem: {
     alignItems: 'center',
     paddingVertical: 8,
@@ -106,22 +108,28 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     minWidth: 60,
   },
+
   activeNavItem: {
-    backgroundColor: 'rgba(255, 255, 255, 1)',
+    backgroundColor: '#ffffffff',
   },
+
   navText: {
     fontSize: 11,
     fontWeight: 'bold',
     color: '#000000ff',
     marginTop: 2,
   },
+
   activeNavText: {
     color: '#000000ff',
   },
+
   pagerView: {
     flex: 1,
   },
+
   page: {
     flex: 1,
   },
+  
 });

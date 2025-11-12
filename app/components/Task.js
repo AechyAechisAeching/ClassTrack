@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import OptionSelector from "./OptionSelector";
 
-export default function Task({ text, onRemove, onEdit, description, priority = "Low", onPriorityChange }) {
+export default function Task({ text, onRemove, onEdit, description, priority = "Low", onPriorityChange, completed = false, onToggleComplete }) {
   const [selectedPriority, setSelectedPriority] = useState(priority);
 
   const handlePriorityChange = (value) => {
@@ -13,19 +13,25 @@ export default function Task({ text, onRemove, onEdit, description, priority = "
 
   return (
   <View style={styles.taskContainer}>
-    <View style={styles.contentWrapper}>
-      <View style={styles.mainContent}>
-        <View style={styles.titleRow}>
-          <View style={styles.checkboxPlaceholder}>
-            <Ionicons name="checkmark-circle-outline" size={22} color="#065a3eff" />
-          </View>
-          <Text style={styles.taskTitle}>{text}</Text>
+      <View style={styles.contentWrapper}>
+        <View style={styles.mainContent}>
+          <View style={styles.titleRow}>
+            <TouchableOpacity 
+              style={styles.checkboxPlaceholder} 
+              onPress={onToggleComplete}>
+              <Ionicons 
+                name={completed ? "checkmark-circle" : "checkmark-circle-outline"} 
+                size={22} 
+                color={completed ? "#10b981" : "#065a3eff"} />
+            </TouchableOpacity>
+            <Text style={[
+              styles.taskTitle,
+              completed && styles.taskTitleCompleted]}>{text}</Text>
           <OptionSelector
             options={[selectedPriority]}
             onSelect={handlePriorityChange}
             initialValue={selectedPriority}
-            displayOnly={true}
-          />
+            displayOnly={true}/>
         </View>
         {description && (
           <View style={styles.descriptionRow}>
@@ -124,4 +130,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fecaca',
   },
+
+  taskTitleCompleted: {
+  textDecorationLine: 'line-through',
+  color: '#94a3b8',
+  opacity: 0.7,
+},
+
+  descriptionCompleted: {
+  textDecorationLine: 'line-through',
+  opacity: 0.6,
+},
 });
