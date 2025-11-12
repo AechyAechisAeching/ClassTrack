@@ -49,7 +49,7 @@ export default function Task({ text, onRemove, onEdit, description, priority = "
 
 const styles = StyleSheet.create({
   taskContainer: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ebf5ffff',
     borderRadius: 16,
     marginVertical: 8,
     marginHorizontal: 16,

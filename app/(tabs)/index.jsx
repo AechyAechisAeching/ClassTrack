@@ -138,7 +138,7 @@ export default function HomeScreen() {
                   </View>
                 ))
               ) : (
-                <Text style={styles.taskContent}>No tasks added yet</Text>
+                <Text style={styles.NoItem}>No tasks added yet</Text>
               )}
            <View style={styles.noteCard}>
   <View style={styles.contentWrapper}>
@@ -174,7 +174,7 @@ export default function HomeScreen() {
       </View>
     ))
   ) : (
-    <Text style={styles.noteContent}>No notes added yet</Text>
+    <Text style={styles.NoItem}>No notes added yet</Text>
   )}
 </View>
             </View>
@@ -339,7 +339,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginLeft: 10,
-    marginBottom: 2,
+    marginTop: 12,
+    marginBottom: 12,
   },
 
   noteHeader: {
@@ -362,15 +363,9 @@ const styles = StyleSheet.create({
   },
 
   taskContent: {
-      color: 'grey',
-      marginTop: 10,
-     backgroundColor: '#ffffff1b',
-     borderRadius: 12,
-     borderColor: '#6e6e6e32',
-     borderWidth: 1,
-     padding: 16,
-     marginVertical: 10,
-     marginHorizontal: 10,
+     color: 'grey',     
+     marginVertical: 2,
+     marginHorizontal: 0,
   },
 
   taskItem: {
@@ -389,14 +384,9 @@ const styles = StyleSheet.create({
 
   noteContent: {
      color: 'grey',
-      marginTop: 10,
-     backgroundColor: '#ffffff1b',
-     borderRadius: 12,
-     borderColor: '#6e6e6e32',
-     borderWidth: 1,
-     padding: 16,
-     marginVertical: 10,
-     marginHorizontal: 10,
+     marginVertical: 2,
+     marginHorizontal: 15,
+     marginBottom: 12,
   },
 
   noteDescription: {
@@ -419,6 +409,18 @@ const styles = StyleSheet.create({
   marginVertical: 12,
   marginHorizontal: 4,
   },
+
+  NoItem: {
+    marginTop: 10,
+    backgroundColor: "#ffffff1b",
+    borderRadius: 12,
+    borderColor: "#6e6e6e32",
+    borderWidth: 1,
+    padding: 16,
+    color: 'grey',
+    marginVertical: 10,
+    marginHorizontal: 10,
+  }
 
 
 });
