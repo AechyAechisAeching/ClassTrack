@@ -23,8 +23,7 @@ export default function EditModal({ visible, onClose, onEditTask, task }) {
       visible={visible}
       transparent={true}
       animationType="slide"
-      onRequestClose={onClose}
-    >
+      onRequestClose={onClose}>
       <View style={styles.modalOverlay}>
         <View style={styles.modalCard}>
           <Text style={styles.modalTitle}>Edit Task</Text>
@@ -33,28 +32,24 @@ export default function EditModal({ visible, onClose, onEditTask, task }) {
             value={taskName}
             onChangeText={setTaskName}
             mode="outlined"
-            style={styles.input}
-          />
+            style={styles.input}/>
           <TextInput
             placeholder="Task Description"
             value={description}
             onChangeText={setDescription}
             mode="outlined"
-            style={styles.input}
-          />
+            style={styles.input} />
           <View style={styles.modalButtons}>
             <Button
               mode="contained"
               onPress={handleSave}
-              style={styles.confirmButton}
-            >
+              style={styles.confirmButton}>
               Save
             </Button>
             <Button
               mode="outlined"
               onPress={onClose}
-              style={styles.cancelButton}
-            >
+              style={styles.cancelButton}>
               Cancel
             </Button>
           </View>

@@ -7,8 +7,10 @@ import Modal from '../components/ui/TaskModal';
 import Task from '../components/Task';
 import EditModal from '../components/ui/EditModal';
 import { useApp } from '../context/AppContext';
+import ViewModal from '../components/ui/ViewModal';
 
 export default function TasksScreen() {
+
   const [modalVisible, setModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
   const { tasks, setTasks, isLoading } = useApp();
@@ -33,6 +35,8 @@ export default function TasksScreen() {
     setEditingTask(null);
     setEditingIndex(null);
   }
+
+
 
   const openEditModal = (index) => {
     setEditingTask(tasks[index]);

@@ -23,22 +23,18 @@ export default function Modal({ visible, onClose, onAddLesson }) {
         
     };
 
-
-    
     return (
       <RNModal
-      
             visible={visible}
             transparent={true}
             animationType="slide"
-            onRequestClose={onClose}
-          >
+            onRequestClose={onClose}>
+
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={styles.modalOverlay}>
             <KeyboardAvoidingView
             style={styles.keyboardView}
-              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-              >
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
             
               <View style={styles.modalCard}>
                 <TouchableOpacity onPress={onClose} style={styles.cancelButton}>
@@ -50,8 +46,7 @@ export default function Modal({ visible, onClose, onAddLesson }) {
                   value={lessons}
                   mode='outlined'
                   onChangeText={setLessons}
-                  style={styles.inputSubject}
-                />
+                  style={styles.inputSubject}/>
                   <Text style={styles.content}>Teacher</Text>
                   
                 <TextInput
@@ -59,8 +54,7 @@ export default function Modal({ visible, onClose, onAddLesson }) {
                   onChangeText={setTeacher}
 
                   mode="outlined"
-                  style={styles.inputContent}
-                />
+                  style={styles.inputContent}/>
 
                 <Text style={styles.content}>Classroom</Text>
                  <TextInput
@@ -97,8 +91,7 @@ export default function Modal({ visible, onClose, onAddLesson }) {
                 onChange={(day) => {
                   setDay(day.value);
                   setIsFocus(false);
-                }}
-              />
+                }}/>
 
                 <View style={styles.modalButtons}>
 
@@ -115,7 +108,7 @@ export default function Modal({ visible, onClose, onAddLesson }) {
                   
                 </View>
               </View>
-                          </KeyboardAvoidingView>
+              </KeyboardAvoidingView>
             </View>
             </TouchableWithoutFeedback>
           </RNModal>

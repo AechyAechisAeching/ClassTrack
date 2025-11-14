@@ -39,6 +39,7 @@ export const AppProvider = ({ children }) => {
     }
   }, [notes]);
 
+
   const loadData = async () => {
     try {
       const [storedTasks, storedLessons, storedNotes] = await Promise.all([
