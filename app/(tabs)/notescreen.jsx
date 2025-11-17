@@ -7,11 +7,14 @@ import { useState } from "react";
 import Note from "../components/Note";
 import NoteEditModal from "../components/ui/NoteEditModal";
 import { useApp } from "../context/AppContext";
+import ViewModal from "../components/ui/NoteViewModal";
 
 export default function NotesScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [NoteEditModalVisible, setNoteEditModalVisible] = useState(false);
   const { notes, setNotes, isLoading } = useApp();
+  const [ViewmodalVisible, setViewModalVisible] = useState(false);
+  const [viewingNote, setViewingNote] = useState(null);
   const [editingNote, setEditingNote] = useState(null);
   const [editingIndex, setEditingIndex] = useState(null);
 
@@ -39,6 +42,18 @@ export default function NotesScreen() {
     setEditingNote(null);
     setEditingIndex(null);
   };
+
+    const openViewModal = (index) => {
+  setViewingNote(notes[index]);
+  setViewModalVisible(true);
+  };
+
+  const closeViewModal = () => {
+    setViewModalVisible(false);
+    setViewingNote(null);
+  };
+
+
 
    const toggleNoteCompletion = (index) => {
   const updatedNotes = [...notes];
@@ -98,7 +113,9 @@ export default function NotesScreen() {
             <Note key={index} text={item.note} description={item.description} completed={item.completed || false}
             onToggleComplete={() => toggleNoteCompletion(index)}
             onEdit={() => openNoteEditModal(index)}
+            OnView={() => openViewModal(index)}
             onRemove={() => removeNote(index)} />
+            
           ))}
         </View>
           )}
@@ -106,6 +123,11 @@ export default function NotesScreen() {
           visible={modalVisible}
           onClose={() => setModalVisible(false)}
           onAddNote={handleAddNote} />
+
+          <ViewModal
+           visible={ViewmodalVisible}
+           onClose={closeViewModal}
+           note={viewingNote}/>
 
           <NoteEditModal
           visible={NoteEditModalVisible}

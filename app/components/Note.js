@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 
-export default function Note({ text, onEdit, description, onRemove, completed = false, onToggleComplete }) {
+export default function Note({ text, onEdit, description, onRemove, completed = false, onToggleComplete, OnView}) {
   return (
-    <View style={styles.noteContainer}>
+    <TouchableOpacity style={styles.noteContainer} onPress={OnView}>
           <View style={styles.contentWrapper}>
             <View style={styles.mainContent}>
               <View style={styles.titleRow}>
@@ -40,7 +40,7 @@ export default function Note({ text, onEdit, description, onRemove, completed = 
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

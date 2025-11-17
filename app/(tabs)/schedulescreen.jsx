@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Schedule from '../components/Schedule';
 import LessonEditModal from '../components/ui/LessonEditModal';
 import { useApp } from '../context/AppContext';
+import ViewModal from '../components/ui/LessonViewModal';
 
 export default function ScheduleScreen() {
     const [modalVisible, setModalVisible] = useState(false);
@@ -14,6 +15,8 @@ export default function ScheduleScreen() {
     const [editLessonModalVisible, setLessonEditModalVisible] = useState(false);
     const [editingLesson, setEditingLesson] = useState(null);
     const [editingIndex, setEditingIndex] = useState(null);
+    const [ViewmodalVisible, setViewModalVisible] = useState(null);
+    const [viewingLesson, setViewingLesson] = useState(null);
 
     const handleAddLesson = (newLesson) => {
         setLessons([...lessons, newLesson]);
@@ -38,6 +41,16 @@ const openLessonEditModal = (index) => {
     setLessonEditModalVisible(false);
     setEditingLesson(null);
     setEditingIndex(null);
+ };
+
+ const openViewModal = (index) => {
+  setViewingLesson(lessons[index]);
+  setViewModalVisible(true);
+ };
+
+ const closeViewModal = () => {
+  setViewingLesson(null);
+  setViewModalVisible(false);
  };
 
  const removeLesson = (removeItem) => {
@@ -85,6 +98,7 @@ const openLessonEditModal = (index) => {
                     description={item.teacher}
                     location={item.classroom}
                     date={item.date}
+                    OnView={() => openViewModal(index)}
                     onEdit={() => openLessonEditModal(index)}
                     onRemove={() => removeLesson(index)}
                   />
@@ -95,6 +109,12 @@ const openLessonEditModal = (index) => {
               visible={modalVisible}
               onClose={() => setModalVisible(false)}
               onAddLesson={handleAddLesson}
+            />
+
+            <ViewModal
+            visible={ViewmodalVisible}
+            onClose={closeViewModal}
+            lessons={viewingLesson}
             />
             <LessonEditModal
               visible={editLessonModalVisible}

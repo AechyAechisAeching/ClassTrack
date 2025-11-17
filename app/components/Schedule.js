@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 
-export default function Schedule({ text, description, onRemove, onEdit, location, date }) {
+export default function Schedule({ text, description, onRemove, onEdit, location, date, OnView }) {
   return (
-    <View style={styles.ScheduleContainer}>
+    <TouchableOpacity style={styles.ScheduleContainer} onPress={OnView}>
       <View style={styles.contentWrapper}>
         <View style={styles.mainContent}>
           <Text style={styles.ScheduleTitle}>{text}</Text>
@@ -43,7 +43,7 @@ export default function Schedule({ text, description, onRemove, onEdit, location
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

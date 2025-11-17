@@ -7,7 +7,7 @@ import Modal from '../components/ui/TaskModal';
 import Task from '../components/Task';
 import EditModal from '../components/ui/EditModal';
 import { useApp } from '../context/AppContext';
-import ViewModal from '../components/ui/ViewModal';
+import ViewModal from '../components/ui/TaskViewModal';
 
 export default function TasksScreen() {
 
