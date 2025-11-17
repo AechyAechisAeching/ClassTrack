@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import OptionSelector from "./OptionSelector";
 
-export default function Task({ text, onRemove, onEdit, description, priority = "Low", onPriorityChange, completed = false, onToggleComplete }) {
+export default function Task({ text, onRemove, onEdit, description, priority = "Low", onPriorityChange, completed = false, onToggleComplete, onView }) {
   const [selectedPriority, setSelectedPriority] = useState(priority);
 
   const handlePriorityChange = (value) => {
@@ -12,7 +12,7 @@ export default function Task({ text, onRemove, onEdit, description, priority = "
   };
 
   return (
-  <View style={styles.taskContainer}>
+  <TouchableOpacity style={styles.taskContainer} onPress={onView}>
       <View style={styles.contentWrapper}>
         <View style={styles.mainContent}>
           <View style={styles.titleRow}>
@@ -49,7 +49,8 @@ export default function Task({ text, onRemove, onEdit, description, priority = "
         </TouchableOpacity>
       </View>
     </View>
-  </View>
+  </TouchableOpacity>
+            
 );
 }
 

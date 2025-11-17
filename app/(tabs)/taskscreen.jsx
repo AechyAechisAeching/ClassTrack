@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
@@ -16,12 +16,22 @@ export default function TasksScreen() {
   const { tasks, setTasks, isLoading } = useApp();
   const [editingTask, setEditingTask] = useState(null);
   const [editingIndex, setEditingIndex] = useState(null);
-
+  const [ViewmodalVisible, setViewModalVisible] = useState(false);
+  const [viewingTask, setViewingTask] = useState(null);
   const handleAddTask = (newTask) => {
     setTasks([...tasks, newTask]);
     setModalVisible(false);
   };
 
+  const openViewModal = (index) => {
+  setViewingTask(tasks[index]);
+  setViewModalVisible(true);
+  };
+
+  const closeViewModal = () => {
+  setViewModalVisible(false);
+  setViewingTask(null);
+}
   const toggleTaskCompletion = (index) => {
   const updatedTasks = [...tasks];
   updatedTasks[index].completed = !updatedTasks[index].completed;
@@ -98,6 +108,7 @@ export default function TasksScreen() {
       onToggleComplete={() => toggleTaskCompletion(index)}
       onRemove={() => removeTask(index)}
       onEdit={() => openEditModal(index)}
+      onView={() => openViewModal(index)}
       onPriorityChange={(value) => {
         const updatedTasks = [...tasks];
         updatedTasks[index].priority = value;
@@ -113,6 +124,10 @@ export default function TasksScreen() {
           onClose={() => setModalVisible(false)}
           onAddTask={handleAddTask} />
 
+          <ViewModal
+            visible={ViewmodalVisible}
+            onClose={closeViewModal}
+            task={viewingTask}/>
           <EditModal
           visible={editModalVisible}
           onClose={closeEditModal}

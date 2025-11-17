@@ -61,13 +61,10 @@ export default function Modal({ visible, onClose, onAddLesson }) {
                   value={classroom}
                   onChangeText={setClassroom}
                   mode="outlined"
-                  style={styles.inputclass}
-                />
-      <Text style={styles.content}>
-                Day
-                    </Text>
-                   
-                     <Dropdown
+                  style={styles.inputclass}/>
+                  <Text style={styles.content}>Day</Text>
+                
+                <Dropdown
                 style={[styles.dropdown, isFocus && { borderColor: "black" }]}
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={styles.selectedTextStyle}
@@ -94,25 +91,19 @@ export default function Modal({ visible, onClose, onAddLesson }) {
                 }}/>
 
                 <View style={styles.modalButtons}>
-
                   <TouchableOpacity onPress={handleAdd}
                   activeOpacity={0.8}
                   style={styles.confirmButton}>
                     <Text style={styles.confirmButtonText}>
                       Add Lesson
                     </Text>
-                    
-                    
                   </TouchableOpacity>
-                 
-                  
                 </View>
               </View>
               </KeyboardAvoidingView>
             </View>
             </TouchableWithoutFeedback>
           </RNModal>
-          
         );
 }
 
